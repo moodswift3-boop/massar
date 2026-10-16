@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#102a43">
+<title>مَسَار — مساحة للنمو خطوة بخطوة</title>
+<style>
+:root{--ink:#102a43;--muted:#52677a;--paper:#f5f7fa;--card:#fff;--line:#dce5ed;--accent:#1d7a70;--gold:#d9a441}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Tahoma,Arial,sans-serif;line-height:1.8}
+header{background:linear-gradient(125deg,#102a43,#1d625e);color:#fff;padding:48px 20px 56px}.wrap{max-width:1080px;margin:auto;padding:0 20px}.top{display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap}.brand{font-weight:800;letter-spacing:.04em;font-size:1.2rem}.pill{border:1px solid #ffffff66;border-radius:999px;padding:5px 12px;font-size:.85rem}
+h1{font-size:clamp(2rem,5vw,3.7rem);line-height:1.25;max-width:760px;margin:35px 0 14px}header p{max-width:680px;color:#e1edf2;font-size:1.1rem}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.btn{border:0;border-radius:12px;padding:11px 18px;font:inherit;font-weight:700;cursor:pointer;background:var(--gold);color:#102a43}.btn.secondary{background:transparent;border:1px solid #ffffff88;color:white}
+main{padding:30px 0 64px}.notice{border:1px solid #ead8a8;background:#fff9e9;padding:14px 16px;border-radius:14px;color:#5c4a20;margin-bottom:24px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}.stat,.window,.detail{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}.stat strong{display:block;font-size:1.5rem}.muted{color:var(--muted);font-size:.92rem}
+.windows{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}.window{display:flex;flex-direction:column;gap:10px}.window .num{color:var(--accent);font-weight:800;font-size:.85rem}.window h2{font-size:1.2rem;margin:0}.window p{margin:0;color:var(--muted)}.window button{align-self:flex-start;background:#e6f3f0;color:#14564f;border:0;border-radius:10px;padding:8px 12px;font:inherit;font-weight:700;cursor:pointer}
+.detail{margin-top:20px;display:none}.detail.show{display:block}.unit-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;padding:0;list-style:none}.unit{display:flex;align-items:flex-start;gap:10px;border:1px solid var(--line);padding:12px;border-radius:12px}.unit input{margin-top:7px;accent-color:var(--accent);width:18px;height:18px}.unit label{cursor:pointer}.progress{height:8px;background:#e5edf2;border-radius:99px;overflow:hidden;margin:12px 0}.progress span{display:block;height:100%;width:0;background:var(--accent);transition:width .2s}footer{border-top:1px solid var(--line);padding:22px 0;color:var(--muted);font-size:.9rem}:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+@media(max-width:560px){header{padding-top:28px}.stats{grid-template-columns:1fr}.wrap{padding:0 16px}}
+</style></head>
+<body><header><div class="wrap"><div class="top"><div class="brand">مَسَار <span style="color:#f1ca75">/</span> SWIFTWARM</div><span class="pill">نسخة تأسيسية · تجريبية</span></div>
+<h1>خطوة صغيرة اليوم، مساحة أوسع غدًا.</h1><p>مَسَار مساحة تعلّم تساعدك على اكتشاف نفسك، وبناء علاقات صحية، والاهتمام بجسمك ومشاعرك، والاستعداد للحياة العملية — خطوة بخطوة، دون سباق أو مقارنة.</p>
+<div class="actions"><button class="btn" onclick="document.querySelector('#windows').scrollIntoView({behavior:'smooth'})">استكشف المسارات</button><button class="btn secondary" onclick="document.querySelector('#privacy').scrollIntoView({behavior:'smooth'})">اعرف عن الخصوصية</button></div></div></header>
+<main class="wrap"><div class="notice"><strong>ملاحظة مهمة:</strong> هذه نسخة أولية تعمل في المتصفح. التقدّم يُحفظ محليًا على هذا الجهاز فقط؛ لا يوجد حتى الآن تسجيل دخول أو مزامنة حسابات أو خادم خلفي.</div>
+<div class="stats"><div class="stat"><strong>٥ مسارات</strong><span class="muted">مجالات نمو متكاملة</span></div><div class="stat"><strong>٣٩ وحدة</strong><span class="muted">موضوعًا للتعلّم والتجربة</span></div><div class="stat"><strong id="completedCount">٠ / ٣٩</strong><span class="muted">وحدة علّمتها كمكتملة</span><div class="progress"><span id="progressBar"></span></div></div></div>
+<h2 id="windows">المسارات الخمسة</h2><p class="muted">اختر مسارًا لعرض وحداته. ابدأ بما تحتاجه الآن، ويمكنك العودة إلى أي وحدة لاحقًا.</p>
+<section class="windows">
+<article class="window"><span class="num">المسار ٠١</span><h2>الوعي النفسي</h2><p>افهم نفسك، وأفكارك، وعاداتك، وطريقتك في التعامل مع التحديات.</p><button onclick="showUnits(0)">عرض الوحدات ←</button></article>
+<article class="window"><span class="num">المسار ٠٢</span><h2>المهارات الاجتماعية</h2><p>تواصل بوضوح، واستمع بوعي، وابنِ علاقات تقوم على الاحترام.</p><button onclick="showUnits(1)">عرض الوحدات ←</button></article>
+<article class="window"><span class="num">المسار ٠٣</span><h2>الجسد والهوايات</h2><p>اكتشف الحركة والراحة والهوايات التي تمنح يومك توازنًا ومعنى.</p><button onclick="showUnits(2)">عرض الوحدات ←</button></article>
+<article class="window"><span class="num">المسار ٠٤</span><h2>الوعي العاطفي</h2><p>سمِّ مشاعرك، وافهم احتياجاتك، وتدرّب على الحدود والحوار المسؤول.</p><button onclick="showUnits(3)">عرض الوحدات ←</button></article>
+<article class="window"><span class="num">المسار ٠٥</span><h2>الحياة العملية والاقتصادية والعلمية</h2><p>خطط لمالك، وطوّر مهاراتك، وتعلّم التفكير النقدي والاستعداد للعمل.</p><button onclick="showUnits(4)">عرض الوحدات ←</button></article></section>
+<section class="detail" id="unitDetail" aria-live="polite"><h2 id="unitHeading">وحدات المسار</h2><p class="muted">علّم الوحدة عند إكمالها. يمكنك تغيير اختيارك في أي وقت.</p><ul class="unit-list" id="unitList"></ul></section>
+<section id="privacy" style="margin-top:32px"><h2>الخصوصية والسلامة</h2><div class="window"><p>هذه النسخة لا تطلب اسمك أو بريدك أو كلمة مرورك. حالة إكمال الوحدات تُخزّن في التخزين المحلي للمتصفح على جهازك. لا تستخدم هذا النموذج لتسجيل معلومات شخصية حساسة.</p><p class="muted">تسجيل الدخول الحقيقي، والمزامنة بين الأجهزة، وسياسة الخصوصية النهائية تحتاج إلى تنفيذ ومراجعة منفصلين قبل إطلاق عام.</p></div></section></main>
+<footer><div class="wrap">مَسَار — نسخة تأسيسية قيد التطوير. المحتوى تعليمي عام ولا يحل محل الدعم المتخصص عند الحاجة.</div></footer>
+<script>
+const paths=[
+{title:"الوعي النفسي",units:["معرفة الذات ونقاط القوة","الأفكار والمعتقدات","المشاعر والضغط النفسي","الثقة وتقدير الذات","المرونة والتعامل مع الفشل","العادات والانضباط","الأهداف ومتابعة التقدم"]},
+{title:"المهارات الاجتماعية",units:["الإنصات الفعّال","التعبير عن النفس والاحتياجات","الحدود الشخصية","العلاقات الصحية","حل الخلاف والتفاوض","التعاون والعمل الجماعي","المجتمع والتطوع"]},
+{title:"الجسد والهوايات",units:["الحركة واللياقة","المرونة والتوازن والتحمل","النوم والتعافي","اكتشاف الهوايات","الهوايات الإبداعية","الهوايات الفكرية","الطبيعة والتصوير والاستكشاف الآمن","إدارة الوقت والهوايات"]},
+{title:"الوعي العاطفي",units:["فهم المشاعر وتسميتها","الاحتياجات والتوقعات","الاستقلال العاطفي وتوازن التعلّق","المودة والثقة والأمان","الحدود العاطفية","الرفض والفقد والانفصال","الحوار العاطفي وإدارة الخلاف","العلاقات المسؤولة"]},
+{title:"الحياة العملية والاقتصادية والعلمية",units:["الميزانية الشخصية","الادخار والتخطيط","فهم الاقتصاد والعمل","الميول المهنية","الاستعداد لسوق العمل","العمل الحر والمشروعات الصغيرة","التعلّم العلمي والتفكير النقدي","المهارات الرقمية","التطور المهني"]}
+];
+const storeKey="massar-progress-v1";let done={};try{done=JSON.parse(localStorage.getItem(storeKey)||"{}")}catch(e){done={}}
+function save(){try{localStorage.setItem(storeKey,JSON.stringify(done))}catch(e){}updateProgress()}
+function updateProgress(){const n=Object.values(done).filter(Boolean).length;document.getElementById("completedCount").textContent=n+" / 39";document.getElementById("progressBar").style.width=(n/39*100)+"%"}
+function showUnits(i){const path=paths[i],detail=document.getElementById("unitDetail"),list=document.getElementById("unitList");document.getElementById("unitHeading").textContent=path.title+" — الوحدات";list.innerHTML="";path.units.forEach((name,j)=>{const id=i+"-"+j,li=document.createElement("li");li.className="unit";const cb=document.createElement("input");cb.type="checkbox";cb.id="u-"+id;cb.checked=!!done[id];cb.addEventListener("change",()=>{done[id]=cb.checked;save()});const label=document.createElement("label");label.htmlFor=cb.id;label.textContent=name;li.append(cb,label);list.append(li)});detail.classList.add("show");detail.scrollIntoView({behavior:"smooth",block:"start"})}
+updateProgress();
+</script></body></html>
