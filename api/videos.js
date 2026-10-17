@@ -34,7 +34,8 @@ module.exports = async function handler(req, res) {
       const height = format === "vertical" ? 1920 : format === "square" ? 1080 : 1080;
       const titleDuration = 5;
       const movie = {
-        width, height, quality: "high", cache: true,
+        resolution: "full-hd",
+        width: String(width), height: String(height), quality: "high", cache: true,
         scenes: [
           { duration: titleDuration, elements: [
             { type: "text", text: "SWIFTMEDIA", duration: titleDuration, style: "001", settings: { "font-family": "Arial", "font-size": format === "vertical" ? "72px" : "64px", "font-weight": "700", color: "#F3DCA8", "background-color": "#123F3C", "text-align": "center", "vertical-position": "top", "horizontal-position": "center" } },
@@ -42,9 +43,11 @@ module.exports = async function handler(req, res) {
           ]},
           { elements: [
             { type: "text", text: topic, duration: -2, style: "001", settings: { "font-family": "Arial", "font-size": format === "vertical" ? "54px" : "48px", "font-weight": "700", color: "#FFFFFF", "background-color": "#123F3C", "text-align": "center", "vertical-position": "top", "horizontal-position": "center" } },
-            { type: "voice", text: narration, voice: "ar-EG-SalmaNeural", model: "azure" },
-            { type: "subtitles", language: "ar", model: "default", settings: { "max-words-per-line": 5, "font-size": "48", "font-family": "Arial", "font-weight": "700", "style": "classic", "position": "bottom" } }
+            { type: "voice", text: narration, voice: "ar-EG-SalmaNeural", model: "azure" }
           ]}
+        ],
+        elements: [
+          { type: "subtitles", language: "ar", model: "default", settings: { "max-words-per-line": 5, "font-size": "48", "font-family": "Arial", "font-weight": "700", "style": "classic", "position": "bottom" } }
         ]
       };
 
