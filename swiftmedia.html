@@ -42,8 +42,8 @@
 <div class="scene"><div class="num">4</div><div><strong>الخاتمة · دعوة إلى الفعل</strong><small>تلخيص الفكرة وسؤال للمشاهد</small></div></div>
 </div>
 <div class="voice"><strong>مسودة التعليق الصوتي</strong><span id="voiceText">لا تحتاج إلى تغيير حياتك كلها في يوم واحد. اختر خطوة صغيرة، واربطها بوقت محدد، وكررها حتى تصبح أسهل. ما الخطوة التي تستطيع البدء بها اليوم؟</span></div>
-<div class="actions"><button class="btn secondary" type="button" id="copyBtn">نسخ السيناريو</button><button class="btn" type="button" id="apiInfoBtn">عرض خطوة ربط API</button></div>
-<div id="apiInfo" hidden class="note"><strong>خطة الربط:</strong> واجهة SwiftMedia ترسل السيناريو إلى نقطة خلفية مثل <code>/api/videos</code>؛ الخادم يستخدم مفتاح JSON2Video في متغير بيئة، يرسل وصف المشاهد والصوت والترجمة، ثم يعيد رقم المشروع. الواجهة تستعلم عن الحالة حتى يصبح الفيديو جاهزًا. لا يوجد خادم متصل في هذا النموذج بعد.</div>
+<div class="actions"><button class="btn secondary" type="button" id="copyBtn">نسخ السيناريو</button><button class="btn" type="button" id="renderBtn">إنتاج فيديو فعلي عبر API</button><button class="btn secondary" type="button" id="apiInfoBtn">عرض خطوة ربط API</button></div>
+<div id="renderResult" hidden class="note" aria-live="polite"></div><div id="apiInfo" hidden class="note"><strong>خطة الربط:</strong> واجهة SwiftMedia ترسل السيناريو إلى نقطة خلفية مثل <code>/api/videos</code>؛ الخادم يستخدم مفتاح JSON2Video في متغير بيئة، يرسل وصف المشاهد والصوت والترجمة، ثم يعيد رقم المشروع. الواجهة تستعلم عن الحالة حتى يصبح الفيديو جاهزًا. لا يوجد خادم متصل في هذا النموذج بعد.</div>
 </section>
 </main>
 <footer class="footer"><div class="wrap">SwiftMedia تجربة أولية تابعة لـ Swiftwarm · <a href="./visual-library.html">المكتبة المرئية في مَسَار</a> · لا يُنشأ ملف فيديو في هذه النسخة.</div></footer>
@@ -59,6 +59,32 @@ function makeScene(title,detail,n){return '<div class="scene"><div class="num">'
 form.addEventListener('submit',e=>{e.preventDefault();const d=Object.fromEntries(new FormData(form).entries());const topic=d.topic.trim();const message=d.message.trim();document.getElementById('screenTitle').textContent=topic;document.getElementById('screenText').textContent=message;document.getElementById('voiceText').textContent=scripts[d.voice](message);document.getElementById('status').textContent='تم إنشاء المخطط';const items=[['الافتتاح · السؤال المحوري','عنوان الدرس مع حركة افتتاحية وإيقاع صوتي'],['الفكرة · شرح بصري','أيقونات ورسوم توضح: '+message],['التطبيق · مثال عملي','مشهد مساعد يربط الفكرة بحياة '+d.audience],['الخاتمة · خطوة تالية','ملخص قصير وسؤال يدعو إلى التجربة']];document.getElementById('timeline').innerHTML=items.map((x,i)=>makeScene(x[0],x[1],i+1)).join('');document.getElementById('apiInfo').hidden=true;});
 document.getElementById('resetBtn').addEventListener('click',()=>{Object.entries(examples).forEach(([k,v])=>form.elements[k].value=v);form.requestSubmit();});
 document.getElementById('copyBtn').addEventListener('click',async()=>{const d='عنوان الفيديو: '+document.getElementById('topic').value+'\n\nالمشاهد:\n'+Array.from(document.querySelectorAll('.scene')).map(x=>x.innerText.replace(/\n/g,' — ')).join('\n')+'\n\nالتعليق الصوتي:\n'+document.getElementById('voiceText').textContent;try{await navigator.clipboard.writeText(d);document.getElementById('status').textContent='نُسخ السيناريو';}catch(e){document.getElementById('status').textContent='تعذر النسخ التلقائي';}});
+
+document.getElementById('renderBtn').addEventListener('click',async()=>{
+ const btn=document.getElementById('renderBtn'),result=document.getElementById('renderResult');
+ const d=Object.fromEntries(new FormData(form).entries());
+ const narration=document.getElementById('voiceText').textContent;
+ result.hidden=false;result.textContent='جارٍ إرسال طلب الإنتاج إلى الخادم…';btn.disabled=true;
+ try{
+  const response=await fetch('/api/videos',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({topic:d.topic,narration,format:d.format})});
+  const payload=await response.json();
+  if(!response.ok) throw new Error(payload.message||'تعذر بدء الإنتاج');
+  result.textContent='تم إرسال الطلب. معرّف المشروع: '+payload.project+' — نتابع حالة الرندر…';
+  const project=payload.project;
+  for(let i=0;i<60;i++){
+   await new Promise(resolve=>setTimeout(resolve,5000));
+   const check=await fetch('/api/videos?project='+encodeURIComponent(project));
+   const state=await check.json();
+   if(!check.ok) throw new Error(state.message||'تعذر متابعة حالة الفيديو');
+   if(state.status==='done'&&state.url){result.textContent='اكتمل الفيديو! ';const a=document.createElement('a');a.href=state.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='مشاهدة / تنزيل MP4';result.appendChild(a);document.getElementById('status').textContent='اكتمل الفيديو';return;}
+   if(['error','timeout'].includes(state.status)) throw new Error(state.message||'تعذر إكمال الرندر');
+   result.textContent='حالة الإنتاج: '+state.status+' — سيتم التحقق مجددًا تلقائيًا.';
+  }
+  result.textContent='ما زال الإنتاج جاريًا. احتفظ بمعرّف المشروع: '+project+'، ويمكن إعادة التحقق لاحقًا.';
+ }catch(err){result.textContent='لم يكتمل الطلب: '+err.message+' — تأكد من نشر المشروع على Vercel وإضافة JSON2VIDEO_API_KEY إلى Environment Variables.';}
+ finally{btn.disabled=false;}
+});
+
 document.getElementById('apiInfoBtn').addEventListener('click',()=>{const el=document.getElementById('apiInfo');el.hidden=!el.hidden;});
 </script>
 </body>
