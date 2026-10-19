@@ -17,7 +17,7 @@ module.exports = async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   // Same-origin deployment is recommended. Do not enable wildcard CORS for a secret-backed API.
-  if (req.method === "OPTIONS") return json(res, 204, {});
+  if (req.method === "OPTIONS") { res.status(204); return res.end(); }
   if (!process.env.JSON2VIDEO_API_KEY) {
     return json(res, 503, { error: "server_not_configured", message: "لم يتم إعداد مفتاح JSON2VIDEO_API_KEY في إعدادات الخادم." });
   }
@@ -30,8 +30,8 @@ module.exports = async function handler(req, res) {
       if (!topic || !narration) return json(res, 400, { error: "missing_fields", message: "أرسل عنوان الفيديو ونص التعليق الصوتي." });
       if (!["vertical", "landscape", "square"].includes(format)) return json(res, 400, { error: "invalid_format", message: "مقاس الفيديو غير مدعوم." });
 
-      const width = format === "vertical" ? 1080 : 1920;
-      const height = format === "vertical" ? 1920 : format === "square" ? 1080 : 1080;
+      const width = format === "square" ? 1080 : format === "vertical" ? 1080 : 1920;
+      const height = format === "square" ? 1080 : format === "vertical" ? 1920 : 1080;
       const titleDuration = 5;
       const movie = {
         width, height, quality: "high", cache: true,
