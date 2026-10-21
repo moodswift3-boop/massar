@@ -18,8 +18,19 @@ module.exports = async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   // Same-origin deployment is recommended. Do not enable wildcard CORS for a secret-backed API.
   if (req.method === "OPTIONS") { res.status(204); return res.end(); }
+  // Safe deployment diagnostic: reports only whether the secret exists, never its value.
+  if (req.method === "GET" && req.query && req.query.health === "1") {
+    return json(res, 200, {
+      ok: Boolean(process.env.JSON2VIDEO_API_KEY),
+      service: "swiftmedia-video-api",
+      configuration: process.env.JSON2VIDEO_API_KEY ? "configured" : "missing_key",
+      message: process.env.JSON2VIDEO_API_KEY
+        ? "تم العثور على متغير المفتاح. صلاحية المفتاح تُختبر عند إرسال طلب إنتاج."
+        : "المتغير JSON2VIDEO_API_KEY غير متاح لهذا النشر. أضفه في Vercel ضمن Environment Variables ثم أعد النشر."
+    });
+  }
   if (!process.env.JSON2VIDEO_API_KEY) {
-    return json(res, 503, { error: "server_not_configured", message: "لم يتم إعداد مفتاح JSON2VIDEO_API_KEY في إعدادات الخادم." });
+    return json(res, 503, { error: "server_not_configured", message: "لم يتم إعداد مفتاح JSON2VIDEO_API_KEY في إعدادات الخادم. افتح /api/videos?health=1 لفحص وجود المتغير دون كشف قيمته." });
   }
 
   try {
