@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#8ed7f3">
-<meta name="description" content="SwiftMedia — نموذج أولي لتخطيط فيديوهات تعليمية قصيرة وتجهيزها للإنتاج.">
+<meta name="description" content="SwiftMedia — إعداد سيناريوهات تعليمية وإرسالها إلى خدمة إنتاج الفيديو عند تهيئة الخادم.">
 <title>SwiftMedia | استوديو الفيديو التعليمي</title>
 <style>
 :root{--ink:#172b35;--muted:#657781;--paper:#f4f7f5;--card:#fff;--line:#dce6e1;--teal:#176b62;--deep:#123f3c;--mint:#e2f1ec;--gold:#d5a64c;--shadow:0 14px 38px #19373612}
@@ -18,9 +18,9 @@
 <div class="top"><div class="wrap"><span>Swiftwarm · مختبر الإنتاج التعليمي</span><a href="./index.html">العودة إلى مَسَار ←</a></div></div>
 <header class="wrap hero">
 <div class="brand"><div class="logo">S</div><div><strong>SwiftMedia</strong><small>من الفكرة إلى فيديو تعليمي قصير</small></div></div>
-<div class="eyebrow">نموذج أولي · الإصدار 0.1</div>
+<div class="eyebrow">استوديو الفيديو التعليمي · SwiftMedia</div>
 <h1>حوّل درسًا واحدًا إلى قصة مرئية سهلة الفهم.</h1>
-<p>اكتب فكرة الدرس، وحدد أسلوبه، ثم أنشئ مخططًا أوليًا للمشاهد والتعليق الصوتي. هذه النسخة تختبر تجربة الاستخدام محليًا داخل المتصفح؛ لا ترسل طلبات مدفوعة إلى خدمة فيديو ولا تدّعي إنشاء ملف MP4.</p>
+<p>اكتب فكرة الدرس، وحدد أسلوبه، ثم راجع السيناريو والمشاهد المقترحة. عند جاهزية خادم Vercel ومفتاح JSON2Video، يمكنك إرسال الطلب لإنتاج الفيديو ومتابعة حالته حتى يصبح ملف MP4 جاهزًا.</p>
 </header>
 <main class="wrap layout">
 <section class="panel">
@@ -47,10 +47,10 @@
 </div>
 <div class="voice"><strong>مسودة التعليق الصوتي</strong><span id="voiceText">لا تحتاج إلى تغيير حياتك كلها في يوم واحد. اختر خطوة صغيرة، واربطها بوقت محدد، وكررها حتى تصبح أسهل. ما الخطوة التي تستطيع البدء بها اليوم؟</span></div>
 <div class="actions"><button class="btn secondary" type="button" id="copyBtn">نسخ السيناريو</button><button class="btn" type="button" id="renderBtn">إنتاج فيديو فعلي عبر API</button><button class="btn secondary" type="button" id="apiInfoBtn">عرض خطوة ربط API</button></div>
-<div id="renderResult" hidden class="note" aria-live="polite"></div><div id="apiInfo" hidden class="note"><strong>خطة الربط:</strong> واجهة SwiftMedia ترسل السيناريو إلى نقطة خلفية مثل <code>/api/videos</code>؛ الخادم يستخدم مفتاح JSON2Video في متغير بيئة، يرسل وصف المشاهد والصوت والترجمة، ثم يعيد رقم المشروع. الواجهة تستعلم عن الحالة حتى يصبح الفيديو جاهزًا. لا يوجد خادم متصل في هذا النموذج بعد.</div>
+<div id="renderResult" hidden class="note" aria-live="polite"></div><div id="apiInfo" hidden class="note"><strong>حالة الربط:</strong> ترسل الواجهة الطلب إلى <code>/api/videos</code>. يحتفظ خادم Vercel بمفتاح JSON2Video ويرسل طلب الإنتاج، ثم تتابع الواجهة حالة المشروع. إذا ظهر خطأ، ستعرض الرسالة سبب تعذّر الإرسال أو المتابعة.</div>
 </section>
 </main>
-<footer class="footer"><div class="wrap">SwiftMedia تجربة أولية تابعة لـ Swiftwarm · <a href="./visual-library.html">المكتبة المرئية في مَسَار</a> · لا يُنشأ ملف فيديو في هذه النسخة.</div></footer>
+<footer class="footer"><div class="wrap">SwiftMedia · استوديو الفيديو التعليمي ضمن منظومة Swiftwarm · <a href="./visual-library.html">المكتبة المرئية في مَسَار</a>.</div></footer>
 <script>
 const form=document.getElementById('studioForm');
 const examples={topic:'كيف نبني عادة صغيرة تستمر؟',audience:'الشباب والطلاب',message:'ابدأ بخطوة صغيرة وواضحة، واربطها بوقت أو عادة موجودة بالفعل.',duration:'60',format:'vertical',voice:'warm'};
