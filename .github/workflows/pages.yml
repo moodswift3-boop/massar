@@ -26,30 +26,13 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html visual-library.html swiftmedia.html launch.html _site/
-      - name: Smoke-test pages and JavaScript
+      - name: Run content and interaction QA
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          import re
-          files = ['index.html', 'visual-library.html', 'swiftmedia.html', 'launch.html']
-          for name in files:
-              p = Path(name)
-              assert p.is_file(), f'Missing deploy file: {name}'
-              html = p.read_text(encoding='utf-8')
-              assert '<html lang="ar" dir="rtl">' in html, f'Arabic RTL metadata missing: {name}'
-              assert '</html>' in html.lower(), f'HTML document appears incomplete: {name}'
-              scripts = re.findall(r'<script(?:\\s[^>]*)?>(.*?)</script>', html, re.I | re.S)
-              for i, script in enumerate(scripts):
-                  if script.strip():
-                      Path(f'/tmp/{Path(name).stem}-{i}.js').write_text(script, encoding='utf-8')
-              print(f'PASS {name}: HTML markers checked; {len(scripts)} inline script(s) found')
-          main = Path('index.html').read_text(encoding='utf-8')
-          for code in ['N1','N2','N3','N4','N5','massar-progress-v2','data-open-unit','localStorage']:
-              assert code in main, f'Expected feature missing from index.html: {code}'
-          print('PASS core paths, progress storage, and unit interaction markers')
-          PY
-          for file in /tmp/index-*.js /tmp/visual-library-*.js /tmp/swiftmedia-*.js /tmp/launch-*.js; do
-            if [ -f "$file" ]; then node --check "$file"; echo "PASS JavaScript syntax: $file"; fi
+          python tests/qa.py
+          for file in /tmp/massar-*.js; do
+            [ -f "$file" ] || continue
+            node --check "$file"
+            echo "PASS JavaScript syntax: $file"
           done
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
