@@ -23,7 +23,7 @@ const assert = require("node:assert/strict");
     await page.locator('[data-ws-field="goal"]').fill("أخصص عشر دقائق للتدرب هذا الأسبوع");
     const savedWorksheet = await page.evaluate(() => JSON.parse(localStorage.getItem("massar-worksheet-N1.1")));
     assert.equal(savedWorksheet.goal, "أخصص عشر دقائق للتدرب هذا الأسبوع", "worksheet should save to localStorage");
-    await page.locator("#complete-N1.1").click();
+    await page.locator('[id="complete-N1.1"]').click();
     const savedProgress = await page.evaluate(() => JSON.parse(localStorage.getItem("massar-progress-v2")));
     assert.equal(savedProgress["N1.1"], true, "completed unit should persist");
     await page.reload({ waitUntil: "networkidle" });
