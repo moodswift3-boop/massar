@@ -34,6 +34,19 @@ jobs:
             node --check "$file"
             echo "PASS JavaScript syntax: $file"
           done
+      - name: Browser interaction tests
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+          python -m http.server 4173 --directory _site >/tmp/massar-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 20); do
+            if curl --silent --fail http://127.0.0.1:4173/index.html >/dev/null; then break; fi
+            sleep 1
+          done
+          node tests/browser-smoke.cjs
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
         with:
