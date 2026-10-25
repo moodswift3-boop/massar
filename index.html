@@ -26,9 +26,48 @@ body{background:radial-gradient(ellipse at 50% 12%,#fff 0,transparent 35%),linea
 :root{--ink:#18364a;--muted:#5c7788;--paper:#effaff;--card:rgba(255,255,255,.88);--line:#cceaf6;--teal:#167fa6;--deep:#13516f;--teal2:#e0f6ff;--gold:#f2c66d;--shadow:0 16px 42px rgba(32,115,151,.12)}body{background:radial-gradient(ellipse at 8% 4%,#d7f4ff 0,transparent 30%),radial-gradient(ellipse at 92% 15%,#dff9f2 0,transparent 25%),var(--paper)}.header{background:rgba(255,255,255,.62);border-bottom:1px solid #d8f0f8}.logo{background:linear-gradient(145deg,#5ec7ec,#176a96);box-shadow:0 8px 20px #1b83ad30}.hero{background:linear-gradient(125deg,#17658d,#3aafd2 58%,#8edcf0);box-shadow:0 18px 42px #2b9cc32b;position:relative;overflow:hidden}.hero:after{content:'☁';position:absolute;left:4%;bottom:-38px;font-size:180px;line-height:1;color:#ffffff24;pointer-events:none}.path-card,.panel,.unit,.detail{border-radius:24px;border-color:#cdeaf5;box-shadow:var(--shadow)}.path-icon{background:linear-gradient(145deg,#e2f8ff,#c7effb);color:#167fa6;border-radius:20px}.btn-gold{background:#ffe6a7;color:#17445b}.nav a:hover,.nav a.active{background:#e0f6ff;color:#126b91;border-color:#bde8f7}
 
 .worksheet-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0}.worksheet-field{display:flex;flex-direction:column;gap:7px;padding:15px;border:1px solid var(--line);border-radius:14px;background:#fbfeff}.worksheet-field small{color:var(--muted);font-weight:normal}.worksheet-field textarea{width:100%;min-height:76px;resize:vertical;padding:11px;border:1px solid #c8dce6;border-radius:10px;background:#fff;color:var(--ink);font:inherit;line-height:1.7}.worksheet-field textarea:focus{outline:2px solid #58bde5;outline-offset:1px}.worksheet-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px}.worksheet-actions .small{flex:1 1 100%}@media(max-width:700px){.worksheet-fields{grid-template-columns:1fr}.worksheet-field{padding:12px}}
+
+
+/* Massar 2026 — unified cloud & water identity */
+:root{--sky-0:#f5fcff;--sky-1:#e8f8ff;--sky-2:#bdeaff;--sky-3:#64c8ef;--sky-4:#1688bd;--sky-5:#075a91;--ink:#16384c;--muted:#57778b;--line:#c8e9f7;--card:rgba(255,255,255,.91);--teal:#117eae;--deep:#075a91;--teal2:#e3f7ff;--gold:#f6cd70;--shadow:0 16px 42px rgba(18,111,157,.12)}
+html{scroll-padding-top:18px}
+body{background:radial-gradient(ellipse at 12% 4%,#c8efff 0,transparent 27%),radial-gradient(ellipse at 92% 16%,#d8f8f0 0,transparent 25%),linear-gradient(180deg,#e8f8ff 0%,#f5fcff 56%,#fff 100%);color:var(--ink)}
+.topbar{background:linear-gradient(100deg,#064f84,#137cae)}
+.header{background:rgba(255,255,255,.7);border:1px solid #fff;border-radius:0 0 26px 26px;padding:17px 22px;margin-bottom:22px;box-shadow:0 8px 28px #2b99c20b}
+.logo{background:linear-gradient(145deg,#69d3f3,#0871a8);border-radius:50% 50% 48% 18%;transform:rotate(-8deg);box-shadow:0 8px 24px #1688bd35}
+.hero{background:linear-gradient(125deg,#075a91 0%,#1688bd 58%,#68cdef 100%);border:1px solid #ffffff75;border-radius:34px 34px 28px 28px;box-shadow:0 22px 55px #1688bd26}
+.hero:before{content:"";position:absolute;width:155px;height:78px;left:7%;top:18%;border-radius:60px;background:#ffffff12;box-shadow:34px -17px 0 -5px #ffffff10,65px 1px 0 -10px #ffffff10;pointer-events:none}
+.hero:after{content:"☁";font-size:180px;color:#ffffff19;left:3%;bottom:-43px;top:auto;width:auto;height:auto;border:0;border-radius:0;box-shadow:none}
+.path-grid{gap:22px}
+.path-card{position:relative;isolation:isolate;overflow:visible;margin-top:10px;border:1px solid #c7e9f8;border-radius:28px 28px 24px 24px;background:linear-gradient(160deg,rgba(255,255,255,.98),rgba(240,250,255,.93));box-shadow:0 14px 32px rgba(21,119,161,.11);transition:transform .22s ease,box-shadow .22s ease}
+.path-card:before{content:"";position:absolute;z-index:-1;left:14%;right:14%;height:26px;top:-12px;border-radius:50%;background:rgba(255,255,255,.95);border:1px solid #d4f0fb;border-bottom:0;box-shadow:0 -4px 12px #1688bd08}
+.path-card:after{content:"";position:absolute;z-index:-1;left:25%;top:-20px;width:36px;height:29px;border-radius:50%;background:#fff;border-top:1px solid #d4f0fb}
+.path-card:hover{transform:translateY(-4px);box-shadow:0 20px 42px rgba(21,119,161,.16)}
+.path-icon{width:54px;height:58px;flex-basis:54px;border-radius:22px 22px 22px 8px;background:linear-gradient(145deg,#e6f9ff,#c7effd);color:#0874a7;box-shadow:inset 0 1px 0 #fff,0 6px 14px #1688bd12;display:grid;place-items:center;font-size:1.5rem}
+.path-icon::after{content:"💧";font-size:1.5rem;filter:drop-shadow(0 3px 2px #1688bd1a)}
+.path-icon{font-size:0!important}
+.path-icon::after{font-size:1.55rem}
+.unit,.panel,.detail,.stat{border-color:#d1edf8;box-shadow:0 10px 26px #187eaa0c}
+.unit{border-radius:18px;background:rgba(255,255,255,.94)}
+.unit-code,.tag{background:#e2f6ff;color:#086d9f;border:1px solid #c7eafa}
+.nav a{border-radius:999px}.nav a:hover,.nav a.active{background:#dff5ff;border-color:#b7e7f9}
+.btn,.open-path{transition:transform .16s ease,box-shadow .16s ease}
+.btn:hover,.open-path:hover{transform:translateY(-1px);box-shadow:0 8px 20px #0879c728}
+.btn-primary,.open-path{background:linear-gradient(135deg,#168fc5,#08649b);color:white}
+.btn-gold{background:linear-gradient(135deg,#ffe8ac,#f4c85d);color:#17445b}
+.progress{background:#d9f0fa}.progress span{background:linear-gradient(90deg,#72d7ef,#0879bd)}
+.droplet-field{position:absolute;inset:0 0 auto;height:520px;overflow:hidden;pointer-events:none;z-index:-1}
+.droplet-field span{position:absolute;width:12px;height:17px;background:linear-gradient(145deg,#8de2ff,#219fd5);border-radius:80% 15% 65% 60%;transform:rotate(35deg);opacity:.26;box-shadow:0 4px 10px #1688bd22}
+.droplet-field span:nth-child(1){top:100px;left:5%;width:17px;height:23px}.droplet-field span:nth-child(2){top:220px;left:12%;transform:rotate(12deg) scale(.7)}.droplet-field span:nth-child(3){top:70px;right:7%;transform:rotate(20deg) scale(.8)}.droplet-field span:nth-child(4){top:310px;right:13%;transform:rotate(42deg) scale(1.2)}.droplet-field span:nth-child(5){top:410px;left:42%;transform:rotate(25deg) scale(.6)}
+.back-top{position:fixed;z-index:20;left:20px;bottom:20px;width:48px;height:48px;border:1px solid #ffffff;background:linear-gradient(145deg,#62cef0,#0873ac);color:#fff;border-radius:50% 50% 50% 14%;box-shadow:0 8px 24px #0873ac38;cursor:pointer;font-size:1.15rem;display:grid;place-items:center;transition:transform .2s,opacity .2s}
+.back-top:hover{transform:translateY(-3px) rotate(-4deg)}.back-top:focus-visible{outline:3px solid #f3c95e;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+@media(max-width:700px){.header{padding:14px;border-radius:0 0 20px 20px}.path-grid{gap:18px}.path-card{border-radius:24px}.back-top{left:12px;bottom:12px}}
+
 </style>
 </head>
 <body>
+<div class="droplet-field" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
 <div class="topbar"><div class="wrap toprow"><span>مَسَار · مساحة عملية للنمو والتعلّم</span><span>خطوة صغيرة اليوم، تعلّم مستمر غدًا</span></div></div>
 <header class="wrap header">
  <div class="headrow"><a class="brand" href="#home" aria-label="العودة إلى الرئيسية"><div class="logo" aria-hidden="true">م</div><div><h1>مَسَار</h1><p>التأهيل المتكامل · تعلّم ينطلق من واقعك</p></div></a><a class="btn btn-outline" href="#paths">استكشف المسارات <span aria-hidden="true">←</span></a></div>
@@ -102,5 +141,7 @@ document.getElementById('resetProgress').addEventListener('click',()=>{if(confir
 document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>{document.querySelectorAll('.nav a').forEach(x=>x.classList.toggle('active',x===a))}));
 renderPaths();renderProgress();
 </script>
+<button class="back-top" id="backTop" type="button" aria-label="العودة إلى أعلى الصفحة" title="إلى الأعلى">💧</button>
+<script>document.getElementById('backTop')?.addEventListener('click',()=>window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}));</script>
 </body>
 </html>
