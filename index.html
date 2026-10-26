@@ -144,9 +144,10 @@ function openUnit(code,index){
   try{localStorage.setItem(key,JSON.stringify(data));status.textContent='تم حفظ إجابتك على هذا الجهاز.'}catch(e){status.textContent='تعذر الحفظ التلقائي؛ انسخ إجاباتك احتياطًا.'}
  }));
  document.getElementById('complete-'+id).addEventListener('click',()=>{
-  const hasWork=Array.from(host.querySelectorAll('[data-ws-field]')).some(x=>x.value.trim());
-  if(!hasWork){status.textContent='ابدأ بكتابة إجابة واحدة على الأقل، ثم أنهِ الورقة.';return}
-  progress[id]=true;saveProgress();document.getElementById('complete-'+id).textContent='✓ أنهيت ورقة العمل';status.textContent='أُنجزت الوحدة وحُفظ تقدمك على هذا الجهاز.';
+  const goal=host.querySelector('[data-ws-field="goal"]').value.trim();
+  const step=host.querySelector('[data-ws-field="step"]').value.trim();
+  if(!goal||!step){status.textContent='لإكمال ورقة التخطيط، اكتب هدفًا واضحًا وخطوة أولى قابلة للتنفيذ على الأقل.';return}
+  progress[id]=true;saveProgress();document.getElementById('complete-'+id).textContent='✓ أنهيت ورقة العمل';status.textContent='أُنجزت ورقة التخطيط وحُفظ تقدمك. سجّل ما حدث في خانة المراجعة بعد تجربة الخطوة.';
  });
  document.getElementById('closeUnit').onclick=()=>host.innerHTML='';
  host.scrollIntoView({behavior:'smooth',block:'start'});
