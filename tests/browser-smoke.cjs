@@ -21,6 +21,7 @@ const assert = require("node:assert/strict");
     await page.locator('[data-path="N1"]').click();
     await page.locator('[data-open-unit="N1|0"]').click();
     await page.locator('[data-ws-field="goal"]').fill("أخصص عشر دقائق للتدرب هذا الأسبوع");
+    await page.locator('[data-ws-field="step"]').fill("أحدد موعدًا اليوم وأجهز الأدوات");
     const savedWorksheet = await page.evaluate(() => JSON.parse(localStorage.getItem("massar-worksheet-N1.1")));
     assert.equal(savedWorksheet.goal, "أخصص عشر دقائق للتدرب هذا الأسبوع", "worksheet should save to localStorage");
     await page.locator('[id="complete-N1.1"]').click();
