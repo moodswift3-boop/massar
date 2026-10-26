@@ -33,7 +33,7 @@ require(main.count("subs:[") == 5, "Homepage should define exactly five rehabili
 require("aria-valuenow" in main and "role=\"progressbar\"" in main, "Progress indicator must expose accessible progress semantics")
 require("backTop" in main, "Back-to-top interaction missing")
 require('id="privacy"' in main and "لا تكتب كلمات مرور" in main, "Privacy and sensitive-data guidance missing")
-require("قابل للتنفيذ على الأقل" in main, "Worksheet completion must require a goal and first step")
+require("قابلة للتنفيذ على الأقل" in main, "Worksheet completion must require a goal and first step")
 require("التأهيل الرياضي والهوايات الفردية" in main, "N3 canonical title missing from homepage")
 print("PASS homepage paths, progress storage, and navigation markers")
 
