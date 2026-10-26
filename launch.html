@@ -11,6 +11,16 @@
 <style>
 :root{color-scheme:light;--ink:#173b50;--muted:#557589;--blue:#147faf;--deep:#125777;--sky:#e7f7ff;--line:#cce8f5}
 *{box-sizing:border-box}body{margin:0;font-family:Tahoma,"Segoe UI",Arial,sans-serif;line-height:1.9;color:var(--ink);background:linear-gradient(180deg,#dff5ff,#f8fcff 55%,#fff);}.wrap{width:min(980px,92%);margin:auto}.header{padding:24px 0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{font-size:1.35rem;font-weight:800}.brand span{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:14px;background:linear-gradient(145deg,#54c7ed,#116c9c);color:#fff;margin-left:8px}.button{display:inline-block;background:var(--blue);color:white;text-decoration:none;padding:12px 20px;border-radius:13px;font-weight:bold}.button.secondary{background:white;color:var(--deep);border:1px solid var(--line)}.hero{padding:clamp(28px,6vw,64px);background:linear-gradient(125deg,#125777,#168db9 65%,#7bd7ed);color:#fff;border-radius:30px;box-shadow:0 20px 50px #146b9122}.eyebrow{font-size:.9rem;color:#ffe6a3;font-weight:bold}.hero h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.3;margin:12px 0}.hero p{max-width:690px;color:#e7f7ff;font-size:1.08rem}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.hero .button{background:#ffe5a1;color:#173b50}.hero .button.secondary{background:#ffffff20;color:white;border-color:#ffffff70}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:24px 0}.card{background:#ffffffd9;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 10px 28px #146b910c}.number{width:38px;height:38px;display:grid;place-items:center;background:var(--sky);color:var(--blue);border-radius:12px;font-weight:bold}.card h2{font-size:1.05rem;margin:12px 0 4px}.card p,.note{color:var(--muted);font-size:.93rem}.section{padding:28px 0}.section h2{font-size:1.6rem}.tracks{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.track{padding:16px;border-radius:16px;background:#fff;border:1px solid var(--line)}.track strong{display:block}.footer{padding:30px 0;color:var(--muted);font-size:.88rem}.note{padding:14px 16px;border-right:4px solid #e6bd5c;background:#fff9e8;border-radius:10px}@media(max-width:720px){.steps{grid-template-columns:1fr 1fr}.tracks{grid-template-columns:1fr}.hero{border-radius:22px}}@media(max-width:430px){.steps{grid-template-columns:1fr}}
+
+/* Shared Massar sky identity and accessibility */
+:root{--ink:#123d68;--muted:#527da1;--paper:#eef8ff;--line:#c6e8fb;--teal:#0879c7;--deep:#07569a;--gold:#f5c85e}
+body{background:radial-gradient(ellipse at 50% 4%,#fff 0,transparent 35%),linear-gradient(180deg,#83ceff 0%,#e2f5ff 43%,#f8fcff 100%);color:var(--ink)}
+.hero{background:linear-gradient(130deg,#07569a,#42afea);box-shadow:0 22px 60px rgba(8,121,199,.2)}
+.button{background:#0879c7}
+.button.secondary{color:#07569a;border-color:#b8e6ff;background:rgba(255,255,255,.9)}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #f0b82f;outline-offset:3px}
+html{scroll-padding-top:90px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
@@ -45,6 +55,6 @@
 <div class="card"><h2>مَسَار يبدأ من احتياجك، لا من إعلان</h2><p>التطبيقات والدورات الخارجية خيارات مساندة عندما تخدم هدفك، وليست بديلًا عن خطتك وتجربتك داخل مَسَار. وأي توصية تجارية مستقبلية ستُعرض بإفصاح واضح عن الإحالة.</p><p class="note">النسخة الحالية تجريبية/تطويرية؛ يُحفظ التقدم في المتصفح على الجهاز نفسه. المحتوى تعليمي وإرشادي ولا يغني عن الاستعانة بمتخصص عند الحاجة.</p><a class="button" href="./index.html#paths">اختر مسارك وابدأ ←</a></div>
 </section>
 </main>
-<footer class="wrap footer">مَسَار · خطوة صغيرة اليوم، وتعلّم مستمر غدًا. <br>يمكن مشاركة هذه الصفحة مع من يبحث عن بداية عملية.</footer>
+<footer class="wrap footer">مَسَار · خطوة صغيرة اليوم، وتعلّم مستمر غدًا. <br>مَسَار منصة تعلّم ذاتي وتثقيف عام؛ لا تُعد بديلًا عن المختصين. يُحفظ التقدم محليًا في المتصفح، ولا توجد مزامنة بين الأجهزة في النسخة الحالية.</footer>
 </body>
 </html>
