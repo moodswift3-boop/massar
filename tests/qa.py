@@ -32,6 +32,9 @@ for marker in ["N1", "N2", "N3", "N4", "N5", "massar-progress-v2", "data-open-un
 require(main.count("subs:[") == 5, "Homepage should define exactly five rehabilitation paths")
 require("aria-valuenow" in main and "role=\"progressbar\"" in main, "Progress indicator must expose accessible progress semantics")
 require("backTop" in main, "Back-to-top interaction missing")
+require('id="privacy"' in main and "لا تكتب كلمات مرور" in main, "Privacy and sensitive-data guidance missing")
+require("قابل للتنفيذ على الأقل" in main, "Worksheet completion must require a goal and first step")
+require("التأهيل الرياضي والهوايات الفردية" in main, "N3 canonical title missing from homepage")
 print("PASS homepage paths, progress storage, and navigation markers")
 
 visual = (ROOT / "visual-library.html").read_text(encoding="utf-8")
@@ -58,6 +61,8 @@ for match in lessons:
     require(f'data-check="{lesson_id}"' in quiz and f'id="f-{lesson_id}"' in quiz, f"{lesson_id}: quiz feedback wiring missing")
 require(len(questions) == len(set(questions)), "Review question prompts must be unique across lessons")
 require("اختيار الرياضة والهواية المناسبة" in visual, "N3 sports/hobbies pathway title missing")
+require("التأهيل البدني والصحي" not in visual, "Outdated N3 path label remains in visual library")
+require("روابط الفيديو تقود إلى صفحات موضوع أو بحث" in visual, "External media-link limitation should be disclosed")
 require("localStorage.getItem(k)" in visual and "localStorage.setItem(k" in visual, "Visual exercise progress persistence missing")
 require("data-check" in visual and "aria-live=\"polite\"" in visual, "Quiz feedback accessibility missing")
 # New-tab external links should opt out of opener access.
