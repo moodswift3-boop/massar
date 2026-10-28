@@ -62,7 +62,9 @@ for match in lessons:
 require(len(questions) == len(set(questions)), "Review question prompts must be unique across lessons")
 require("اختيار الرياضة والهواية المناسبة" in visual, "N3 sports/hobbies pathway title missing")
 require("التأهيل البدني والصحي" not in visual, "Outdated N3 path label remains in visual library")
-require("روابط الفيديو تقود إلى صفحات موضوع أو بحث" in visual, "External media-link limitation should be disclosed")
+require("فيديو مختار لهذه الوحدة" in visual, "Every lesson should present a specifically selected video")
+require("youtube.com/results?search_query" not in visual, "Generic YouTube search links must be removed")
+require(visual.count("فيديو مختار لهذه الوحدة") == 39, "Each of the 39 lessons must have one direct video resource")
 require("localStorage.getItem(k)" in visual and "localStorage.setItem(k" in visual, "Visual exercise progress persistence missing")
 require("data-check" in visual and "aria-live=\"polite\"" in visual, "Quiz feedback accessibility missing")
 # New-tab external links should opt out of opener access.
