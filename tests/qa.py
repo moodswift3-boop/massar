@@ -1,10 +1,11 @@
 from pathlib import Path
+import json
 import re
 import xml.etree.ElementTree as ET
 import sys
 
 ROOT = Path(".")
-PAGES = ["index.html", "visual-library.html", "swiftmedia.html", "launch.html"]
+PAGES = ["index.html", "visual-library.html", "swiftmedia.html", "launch.html", "privacy.html"]
 errors = []
 
 def require(condition, message):
@@ -66,12 +67,47 @@ require("التأهيل البدني والصحي" not in visual, "Outdated N3 p
 require("فيديو مختار لهذه الوحدة" in visual, "Every lesson should present a specifically selected video")
 require("youtube.com/results?search_query" not in visual, "Generic YouTube search links must be removed")
 require(visual.count("فيديو مختار لهذه الوحدة") == 39, "Each of the 39 lessons must have one direct video resource")
+
+video_urls = re.findall(
+    r'<b>▶️ فيديو مختار لهذه الوحدة</b><h3>[\\s\\S]*?</h3><p>[\\s\\S]*?</p><a target="_blank" rel="noopener noreferrer" href="([^"]+)">شاهد الفيديو المحدد',
+    visual,
+)
+require(len(video_urls) == 39, f"Expected 39 direct video links, found {len(video_urls)}")
+require(len(set(video_urls)) == 39, "Each visual lesson must use a unique direct video URL")
 require("localStorage.getItem(k)" in visual and "localStorage.setItem(k" in visual, "Visual exercise progress persistence missing")
 require("data-check" in visual and "aria-live=\"polite\"" in visual, "Quiz feedback accessibility missing")
 # New-tab external links should opt out of opener access.
 for tag in re.findall(r'<a\b[^>]*target="_blank"[^>]*>', visual, re.I):
     require('rel="noopener noreferrer"' in tag, "External new-tab link missing rel=noopener noreferrer")
 print(f"PASS visual library: {len(lessons)} lessons, {len(questions)} distinct quiz prompts, answer wiring, and local exercise persistence")
+
+
+# Referral cards are contextual and must remain hidden until approved real tracking links are configured.
+affiliate_path = ROOT / "affiliate-cards.json"
+require(affiliate_path.is_file(), "Missing affiliate-cards.json draft")
+if affiliate_path.is_file():
+    try:
+        affiliate_config = json.loads(affiliate_path.read_text(encoding="utf-8"))
+        offers = affiliate_config.get("offers", [])
+        require(affiliate_config.get("provider") == "Coursera", "Affiliate draft provider should be Coursera")
+        require(len(offers) == 6, f"Expected 6 contextual N5 offer drafts, found {len(offers)}")
+        expected_offer_ids = {f"N5-{n}" for n in range(4, 10)}
+        actual_offer_ids = {offer.get("lesson_id") for offer in offers}
+        require(actual_offer_ids == expected_offer_ids, "Affiliate drafts must target N5-4 through N5-9")
+        for offer in offers:
+            require(offer.get("approved_for_publication") is False, f"{offer.get('lesson_id')}: draft must not be approved by default")
+            require(offer.get("terms_reviewed") is False, f"{offer.get('lesson_id')}: terms must not be marked reviewed by default")
+            require(not offer.get("tracking_url"), f"{offer.get('lesson_id')}: do not publish invented tracking URLs")
+        require("نقر" in affiliate_config.get("default_disclosure_ar", ""), "Affiliate disclosure must clarify that a click alone does not earn commission")
+    except (json.JSONDecodeError, AttributeError, TypeError) as exc:
+        require(False, f"affiliate-cards.json is invalid: {exc}")
+for lesson_id in ["N5-4", "N5-5", "N5-6", "N5-7", "N5-8", "N5-9"]:
+    require(f'data-affiliate-slot="{lesson_id}"' in visual, f"{lesson_id}: affiliate card slot missing")
+require("renderApprovedPartnerCards" in visual, "Affiliate renderer should require explicit approved metadata")
+privacy = (ROOT / "privacy.html").read_text(encoding="utf-8") if (ROOT / "privacy.html").is_file() else ""
+require("سياسة الخصوصية" in privacy and "Local Storage" in privacy, "Privacy page should describe local browser storage")
+require("لا يعرض الموقع حاليًا إعلانات Google AdSense" in privacy, "Privacy page should accurately state ads are not currently active")
+print("PASS affiliate card approval gates and privacy disclosures")
 
 # Syntax-check every non-empty inline JavaScript block in CI.
 scripts = list(Path("/tmp").glob("massar-*.js"))
@@ -97,6 +133,7 @@ if sitemap_path.is_file():
             "https://moodswift3-boop.github.io/massar/launch.html": "launch.html",
             "https://moodswift3-boop.github.io/massar/visual-library.html": "visual-library.html",
             "https://moodswift3-boop.github.io/massar/swiftmedia.html": "swiftmedia.html",
+            "https://moodswift3-boop.github.io/massar/privacy.html": "privacy.html",
         }
         for url, page in expected_urls.items():
             require(url in sitemap_urls, f"sitemap.xml missing expected page: {url}")
