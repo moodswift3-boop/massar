@@ -1,5 +1,6 @@
 from pathlib import Path
 import re
+import xml.etree.ElementTree as ET
 import sys
 
 ROOT = Path(".")
@@ -75,6 +76,41 @@ print(f"PASS visual library: {len(lessons)} lessons, {len(questions)} distinct q
 # Syntax-check every non-empty inline JavaScript block in CI.
 scripts = list(Path("/tmp").glob("massar-*.js"))
 require(bool(scripts), "No inline JavaScript was extracted for syntax checking")
+# Validate crawl-discovery files and ensure the published sitemap points to real pages.
+sitemap_path = ROOT / "sitemap.xml"
+robots_path = ROOT / "robots.txt"
+require(sitemap_path.is_file(), "Missing sitemap.xml")
+require(robots_path.is_file(), "Missing robots.txt")
+if sitemap_path.is_file():
+    try:
+        sitemap_root = ET.parse(sitemap_path).getroot()
+        expected_root = "{http://www.sitemaps.org/schemas/sitemap/0.9}urlset"
+        require(sitemap_root.tag == expected_root, "sitemap.xml must use the standard sitemap urlset namespace")
+        sitemap_urls = [
+            node.text.strip()
+            for node in sitemap_root.findall(".//{http://www.sitemaps.org/schemas/sitemap/0.9}loc")
+            if node.text and node.text.strip()
+        ]
+        require(bool(sitemap_urls), "sitemap.xml must contain at least one URL")
+        expected_urls = {
+            "https://moodswift3-boop.github.io/massar/": "index.html",
+            "https://moodswift3-boop.github.io/massar/launch.html": "launch.html",
+            "https://moodswift3-boop.github.io/massar/visual-library.html": "visual-library.html",
+            "https://moodswift3-boop.github.io/massar/swiftmedia.html": "swiftmedia.html",
+        }
+        for url, page in expected_urls.items():
+            require(url in sitemap_urls, f"sitemap.xml missing expected page: {url}")
+            require((ROOT / page).is_file(), f"sitemap URL maps to missing page: {page}")
+        for url in sitemap_urls:
+            require(url in expected_urls, f"sitemap.xml lists an unexpected URL: {url}")
+    except ET.ParseError as exc:
+        require(False, f"sitemap.xml is not valid XML: {exc}")
+if robots_path.is_file():
+    robots = robots_path.read_text(encoding="utf-8")
+    require("User-agent: *" in robots and "Allow: /" in robots, "robots.txt should allow public crawling")
+    require("Sitemap: https://moodswift3-boop.github.io/massar/sitemap.xml" in robots, "robots.txt sitemap URL missing or incorrect")
+print("PASS sitemap.xml and robots.txt structure and page references")
+
 if errors:
     print("\nQA FAILED:")
     for error in errors:
