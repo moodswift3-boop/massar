@@ -50,6 +50,16 @@ body{background:radial-gradient(ellipse at 50% 0%,#fff 0,transparent 34%),linear
 button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #f0b82f;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 @media(max-width:700px){body{background-attachment:scroll}}
+
+/* Contextual affiliate cards stay absent unless a real link and approval metadata are supplied. */
+.partner-slot:empty{display:none}
+.partner-card{margin:18px 0 0;padding:17px 18px;border:1px solid #acd9f3;border-right:5px solid #0879c7;border-radius:16px;background:linear-gradient(135deg,#f6fcff,#eaf7ff);color:#123d68}
+.partner-card h3{margin:5px 0 7px;font-size:1.05rem}
+.partner-card p{margin:7px 0;color:#3e688b;font-size:.93rem}
+.partner-kicker{display:inline-block;font-size:.78rem;font-weight:bold;letter-spacing:.01em;color:#07569a;background:#d8f0ff;border-radius:8px;padding:3px 8px}
+.partner-link{display:inline-flex;margin-top:8px;padding:9px 14px;border-radius:10px;background:#0879c7;color:#fff;font-weight:bold;text-decoration:none}
+.partner-disclosure{font-size:.78rem!important;color:#527da1!important;border-top:1px solid #c6e8fb;padding-top:8px;margin-top:10px!important}
+
 </style></head><body>
 <div aria-hidden="true" style="position:absolute;inset:0 0 auto;height:450px;overflow:hidden;pointer-events:none;z-index:-1"><span style="position:absolute;top:110px;left:7%;font-size:2rem;opacity:.3">💧</span><span style="position:absolute;top:230px;right:8%;font-size:1.4rem;opacity:.24">💧</span><span style="position:absolute;top:55px;right:35%;font-size:1.1rem;opacity:.2">💧</span></div><div class="top"><div class="wrap">مَسَار · <a href="./">العودة إلى الرئيسية ←</a></div></div><main class="wrap"><section class="hero"><span>المكتبة المرئية · الإصدار التأسيسي</span><h1>تعلّم الفكرة، شاهدها، ثم جرّبها.</h1><p>لكل وحدة: قراءة مقترحة، مصدر مرئي، فكرة إنفوجرافيك أصلية، تمرين عملي وسؤال مراجعة.</p><strong>٥ مسارات · ٣٩ وحدة · ٣٩ تمرينًا · ٣٩ سؤال مراجعة</strong></section>
 <div class="notice"><strong>منهج اختيار المصادر:</strong> أُزيلت روابط البحث العامة واستُبدلت بروابط مباشرة إلى فيديوهات محددة من TED/TED-Ed وUN Women Arabic ومصادر تعليمية متخصصة. بعض الفيديوهات باللغة الإنجليزية؛ افحص الترجمة المتاحة قبل اعتمادها للجمهور العربي. الروابط الخارجية قد تتغير أو تتوقف، ويجب مراجعة الملاءمة والسياق قبل النشر. لا توجد اقتباسات حرفية من الكتب في هذه النسخة؛ الصياغة أصلية احترامًا للحقوق. الكتب ليست بالضرورة مجانية.</div>
@@ -292,45 +302,97 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
 <section class="graphic"><b>✦ فكرة إنفوجرافيك أصلي</b><h3>تقاطع الميول والمهارات والقيم والفرص</h3><p>مقترح بصري مخصص لهوية مَسَار، وليس صورة منسوخة من كتاب أو فيديو.</p></section>
 <section><b>🧭 تمرين تطبيقي · 5–15 دقيقة</b><p>اسأل شخصًا في مجال يهمك عن مهامه اليومية الفعلية.</p><label class="done"><input type="checkbox" data-done="N5-4"> أنجزت التمرين</label></section></div>
 <div class="quiz"><b>سؤال مراجعة</b><p>كيف تختبر ملاءمة مسار مهني قبل الالتزام به؟</p><label class="option"><input type="radio" name="q-N5-4" value="0"> الاعتماد على الانطباع أو عنوان جذاب</label><label class="option"><input type="radio" name="q-N5-4" value="1"> جمع معلومات موثوقة ووضع خطوة قابلة للقياس</label><label class="option"><input type="radio" name="q-N5-4" value="2"> اتخاذ قرار كبير دون اختبار أو مراجعة</label><button data-check="N5-4" data-answer="1">تحقق من الإجابة</button><span id="f-N5-4" aria-live="polite"></span></div>
-<p class="rights">المصدر المرئي محدد بعنوان ورابط مباشر بدل صفحة بحث عامة. تحقق من اللغة والترجمة وملاءمة المحتوى قبل اعتماده في خطة شخصية؛ الروابط الخارجية تظل خاضعة لتوفر الناشر وسياساته.</p></article><article class="lesson" id="N5-5" data-path="N5" data-search="التأهيل الاقتصادي والعملي والعلمي المهارات العملية والاستعداد للتوظيف the 2-hour job search — steve dalton">
+<p class="rights">المصدر المرئي محدد بعنوان ورابط مباشر بدل صفحة بحث عامة. تحقق من اللغة والترجمة وملاءمة المحتوى قبل اعتماده في خطة شخصية؛ الروابط الخارجية تظل خاضعة لتوفر الناشر وسياساته.</p><div class="partner-slot" data-affiliate-slot="N5-4" aria-live="polite"></div>
+</article><article class="lesson" id="N5-5" data-path="N5" data-search="التأهيل الاقتصادي والعملي والعلمي المهارات العملية والاستعداد للتوظيف the 2-hour job search — steve dalton">
 <header><span class="code">N5.5</span><div><h2>المهارات العملية والاستعداد للتوظيف</h2><p>التأهيل الاقتصادي والعملي والعلمي</p></div></header><div class="grid">
 <section><b>📚 قراءة مقترحة</b><h3>The 2-Hour Job Search — Steve Dalton</h3><p>مدخل للموضوع؛ اقرأه قراءة نقدية وراعِ اختلاف الأدلة والسياقات.</p><a target="_blank" rel="noopener noreferrer" href="https://books.google.com/books?q=The%202-Hour%20Job%20Search%20%E2%80%94%20Steve%20Dalton">البحث عن الكتاب ومعلوماته ↗</a></section>
 <section><b>▶️ فيديو مختار لهذه الوحدة</b><h3>كيف تبرز قدراتك عند البحث عن وظيفة — Jason Shen</h3><p>اختير هذا الفيديو لارتباطه المباشر بموضوع الدرس. المصدر: TED Residency. قد تكون لغة الفيديو إنجليزية؛ تحقق من توفر الترجمة العربية قبل المشاهدة.</p><a target="_blank" rel="noopener noreferrer" href="https://www.ted.com/talks/jason_shen_looking_for_a_job_highlight_your_ability_not_your_experience">شاهد الفيديو المحدد ↗</a></section>
 <section class="graphic"><b>✦ فكرة إنفوجرافيك أصلي</b><h3>دليل مقابلة: موقف، مهمة، إجراء، نتيجة</h3><p>مقترح بصري مخصص لهوية مَسَار، وليس صورة منسوخة من كتاب أو فيديو.</p></section>
 <section><b>🧭 تمرين تطبيقي · 5–15 دقيقة</b><p>اكتب موقفًا استخدمت فيه مهارة وصغه بموقف/مهمة/إجراء/نتيجة.</p><label class="done"><input type="checkbox" data-done="N5-5"> أنجزت التمرين</label></section></div>
 <div class="quiz"><b>سؤال مراجعة</b><p>ما الذي يجعل خبرتك أو مهارتك أوضح لصاحب العمل؟</p><label class="option"><input type="radio" name="q-N5-5" value="0"> الاعتماد على الانطباع أو عنوان جذاب</label><label class="option"><input type="radio" name="q-N5-5" value="1"> جمع معلومات موثوقة ووضع خطوة قابلة للقياس</label><label class="option"><input type="radio" name="q-N5-5" value="2"> اتخاذ قرار كبير دون اختبار أو مراجعة</label><button data-check="N5-5" data-answer="1">تحقق من الإجابة</button><span id="f-N5-5" aria-live="polite"></span></div>
-<p class="rights">المصدر المرئي محدد بعنوان ورابط مباشر بدل صفحة بحث عامة. تحقق من اللغة والترجمة وملاءمة المحتوى قبل اعتماده في خطة شخصية؛ الروابط الخارجية تظل خاضعة لتوفر الناشر وسياساته.</p></article><article class="lesson" id="N5-6" data-path="N5" data-search="التأهيل الاقتصادي والعملي والعلمي العمل الحر والمشروعات الصغيرة the lean startup — eric ries">
+<p class="rights">المصدر المرئي محدد بعنوان ورابط مباشر بدل صفحة بحث عامة. تحقق من اللغة والترجمة وملاءمة المحتوى قبل اعتماده في خطة شخصية؛ الروابط الخارجية تظل خاضعة لتوفر الناشر وسياساته.</p><div class="partner-slot" data-affiliate-slot="N5-5" aria-live="polite"></div>
+</article><article class="lesson" id="N5-6" data-path="N5" data-search="التأهيل الاقتصادي والعملي والعلمي العمل الحر والمشروعات الصغيرة the lean startup — eric ries">
 <header><span class="code">N5.6</span><div><h2>العمل الحر والمشروعات الصغيرة</h2><p>التأهيل الاقتصادي والعملي والعلمي</p></div></header><div class="grid">
 <section><b>📚 قراءة مقترحة</b><h3>The Lean Startup — Eric Ries</h3><p>مدخل للموضوع؛ اقرأه قراءة نقدية وراعِ اختلاف الأدلة والسياقات.</p><a target="_blank" rel="noopener noreferrer" href="https://books.google.com/books?q=The%20Lean%20Startup%20%E2%80%94%20Eric%20Ries">البحث عن الكتاب ومعلوماته ↗</a></section>
 <section><b>▶️ فيديو مختار لهذه الوحدة</b><h3>كيف تحوّل عملًا جانبيًا إلى مشروع قابل للنمو — Tawanda Collins Muzamwese</h3><p>اختير هذا الفيديو لارتباطه المباشر بموضوع الدرس. المصدر: TEDx. قد تكون لغة الفيديو إنجليزية؛ تحقق من توفر الترجمة العربية قبل المشاهدة.</p><a target="_blank" rel="noopener noreferrer" href="https://www.ted.com/talks/tawanda_collins_muzamwese_how_to_grow_a_hustle_into_a_viable_business">شاهد الفيديو المحدد ↗</a></section>
 <section class="graphic"><b>✦ فكرة إنفوجرافيك أصلي</b><h3>اختبار فكرة: مشكلة، عميل، تجربة صغيرة، تكلفة</h3><p>مقترح بصري مخصص لهوية مَسَار، وليس صورة منسوخة من كتاب أو فيديو.</p></section>
 <section><b>🧭 تمرين تطبيقي · 5–15 دقيقة</b><p>تحدث مع شخص محتمل من جمهور الفكرة قبل إنفاق مال عليها.</p><label class="done"><input type="checkbox" data-done="N5-6"> أنجزت التمرين</label></section></div>
 <div class="quiz"><b>سؤال مراجعة</b><p>ما الذي ينبغي اختباره قبل الاستثمار في مشروع صغير؟</p><label class="option"><input type="radio" name="q-N5-6" value="0"> الاعتماد على الانطباع أو عنوان جذاب</label><label class="option"><input type="radio" name="q-N5-6" value="1"> جمع معلومات موثوقة ووضع خطوة قابلة للقياس</label><label class="option"><input type="radio" name="q-N5-6" value="2"> اتخاذ قرار كبير دون اختبار أو مراجعة</label><button data-check="N5-6" data-answer="1">تحقق من الإجابة</button><span id="f-N5-6" aria-live="polite"></span></div>
-<p class="rights">المصدر المرئي محدد بعنوان ورابط مباشر بدل صفحة بحث عامة. تحقق من اللغة والترجمة وملاءمة المحتوى قبل اعتماده في خطة شخصية؛ الروابط الخارجية تظل خاضعة لتوفر الناشر وسياساته.</p></article><article class="lesson" id="N5-7" data-path="N5" data-search="التأهيل الاقتصادي والعملي والعلمي التعلّم العلمي والتفكير النقدي the scout mindset — julia galef">
+<p class="rights">المصدر المرئي محدد بعنوان ورابط مباشر بدل صفحة بحث عامة. تحقق من اللغة والترجمة وملاءمة المحتوى قبل اعتماده في خطة شخصية؛ الروابط الخارجية تظل خاضعة لتوفر الناشر وسياساته.</p><div class="partner-slot" data-affiliate-slot="N5-6" aria-live="polite"></div>
+</article><article class="lesson" id="N5-7" data-path="N5" data-search="التأهيل الاقتصادي والعملي والعلمي التعلّم العلمي والتفكير النقدي the scout mindset — julia galef">
 <header><span class="code">N5.7</span><div><h2>التعلّم العلمي والتفكير النقدي</h2><p>التأهيل الاقتصادي والعملي والعلمي</p></div></header><div class="grid">
 <section><b>📚 قراءة مقترحة</b><h3>The Scout Mindset — Julia Galef</h3><p>مدخل للموضوع؛ اقرأه قراءة نقدية وراعِ اختلاف الأدلة والسياقات.</p><a target="_blank" rel="noopener noreferrer" href="https://books.google.com/books?q=The%20Scout%20Mindset%20%E2%80%94%20Julia%20Galef">البحث عن الكتاب ومعلوماته ↗</a></section>
 <section><b>▶️ فيديو مختار لهذه الوحدة</b><h3>خمس نصائح لتحسين التفكير النقدي — Samantha Agoos</h3><p>اختير هذا الفيديو لارتباطه المباشر بموضوع الدرس. المصدر: TED-Ed. قد تكون لغة الفيديو إنجليزية؛ تحقق من توفر الترجمة العربية قبل المشاهدة.</p><a target="_blank" rel="noopener noreferrer" href="https://www.ted.com/talks/samantha_agoos_5_tips_to_improve_your_critical_thinking">شاهد الفيديو المحدد ↗</a></section>
 <section class="graphic"><b>✦ فكرة إنفوجرافيك أصلي</b><h3>فحص الادعاء: المصدر، الدليل، البدائل، درجة الثقة</h3><p>مقترح بصري مخصص لهوية مَسَار، وليس صورة منسوخة من كتاب أو فيديو.</p></section>
 <section><b>🧭 تمرين تطبيقي · 5–15 دقيقة</b><p>ابحث عن الدليل الأصلي لادعاء واسع وسجّل ما لا تعرفه.</p><label class="done"><input type="checkbox" data-done="N5-7"> أنجزت التمرين</label></section></div>
 <div class="quiz"><b>سؤال مراجعة</b><p>كيف تقيّم ادعاءً علميًا بصورة نقدية؟</p><label class="option"><input type="radio" name="q-N5-7" value="0"> الاعتماد على الانطباع أو عنوان جذاب</label><label class="option"><input type="radio" name="q-N5-7" value="1"> جمع معلومات موثوقة ووضع خطوة قابلة للقياس</label><label class="option"><input type="radio" name="q-N5-7" value="2"> اتخاذ قرار كبير دون اختبار أو مراجعة</label><button data-check="N5-7" data-answer="1">تحقق من الإجابة</button><span id="f-N5-7" aria-live="polite"></span></div>
-<p class="rights">المصدر المرئي محدد بعنوان ورابط مباشر بدل صفحة بحث عامة. تحقق من اللغة والترجمة وملاءمة المحتوى قبل اعتماده في خطة شخصية؛ الروابط الخارجية تظل خاضعة لتوفر الناشر وسياساته.</p></article><article class="lesson" id="N5-8" data-path="N5" data-search="التأهيل الاقتصادي والعملي والعلمي المهارات الرقمية والأدوات التقنية the art of thinking clearly — rolf dobelli">
+<p class="rights">المصدر المرئي محدد بعنوان ورابط مباشر بدل صفحة بحث عامة. تحقق من اللغة والترجمة وملاءمة المحتوى قبل اعتماده في خطة شخصية؛ الروابط الخارجية تظل خاضعة لتوفر الناشر وسياساته.</p><div class="partner-slot" data-affiliate-slot="N5-7" aria-live="polite"></div>
+</article><article class="lesson" id="N5-8" data-path="N5" data-search="التأهيل الاقتصادي والعملي والعلمي المهارات الرقمية والأدوات التقنية the art of thinking clearly — rolf dobelli">
 <header><span class="code">N5.8</span><div><h2>المهارات الرقمية والأدوات التقنية</h2><p>التأهيل الاقتصادي والعملي والعلمي</p></div></header><div class="grid">
 <section><b>📚 قراءة مقترحة</b><h3>The Art of Thinking Clearly — Rolf Dobelli</h3><p>مدخل للموضوع؛ اقرأه قراءة نقدية وراعِ اختلاف الأدلة والسياقات.</p><a target="_blank" rel="noopener noreferrer" href="https://books.google.com/books?q=The%20Art%20of%20Thinking%20Clearly%20%E2%80%94%20Rolf%20Dobelli">البحث عن الكتاب ومعلوماته ↗</a></section>
 <section><b>▶️ فيديو مختار لهذه الوحدة</b><h3>المهارات الرقمية المطلوبة اليوم — TEDxPortHarcourt</h3><p>اختير هذا الفيديو لارتباطه المباشر بموضوع الدرس. المصدر: TEDxPortHarcourt. قد تكون لغة الفيديو إنجليزية؛ تحقق من توفر الترجمة العربية قبل المشاهدة.</p><a target="_blank" rel="noopener noreferrer" href="https://www.ted.com/talks/digital_fluency_the_skills_for_today">شاهد الفيديو المحدد ↗</a></section>
 <section class="graphic"><b>✦ فكرة إنفوجرافيك أصلي</b><h3>أمان رقمي: تحديث، تحقق، كلمة مرور، نسخة احتياطية</h3><p>مقترح بصري مخصص لهوية مَسَار، وليس صورة منسوخة من كتاب أو فيديو.</p></section>
 <section><b>🧭 تمرين تطبيقي · 5–15 دقيقة</b><p>فعّل خطوة أمان واحدة على حساب تملكه اليوم.</p><label class="done"><input type="checkbox" data-done="N5-8"> أنجزت التمرين</label></section></div>
 <div class="quiz"><b>سؤال مراجعة</b><p>ما ممارسة تساعد على حماية الحسابات والملفات الرقمية؟</p><label class="option"><input type="radio" name="q-N5-8" value="0"> الاعتماد على الانطباع أو عنوان جذاب</label><label class="option"><input type="radio" name="q-N5-8" value="1"> جمع معلومات موثوقة ووضع خطوة قابلة للقياس</label><label class="option"><input type="radio" name="q-N5-8" value="2"> اتخاذ قرار كبير دون اختبار أو مراجعة</label><button data-check="N5-8" data-answer="1">تحقق من الإجابة</button><span id="f-N5-8" aria-live="polite"></span></div>
-<p class="rights">المصدر المرئي محدد بعنوان ورابط مباشر بدل صفحة بحث عامة. تحقق من اللغة والترجمة وملاءمة المحتوى قبل اعتماده في خطة شخصية؛ الروابط الخارجية تظل خاضعة لتوفر الناشر وسياساته.</p></article><article class="lesson" id="N5-9" data-path="N5" data-search="التأهيل الاقتصادي والعملي والعلمي التخطيط المهني والتطوير المستمر range — david epstein">
+<p class="rights">المصدر المرئي محدد بعنوان ورابط مباشر بدل صفحة بحث عامة. تحقق من اللغة والترجمة وملاءمة المحتوى قبل اعتماده في خطة شخصية؛ الروابط الخارجية تظل خاضعة لتوفر الناشر وسياساته.</p><div class="partner-slot" data-affiliate-slot="N5-8" aria-live="polite"></div>
+</article><article class="lesson" id="N5-9" data-path="N5" data-search="التأهيل الاقتصادي والعملي والعلمي التخطيط المهني والتطوير المستمر range — david epstein">
 <header><span class="code">N5.9</span><div><h2>التخطيط المهني والتطوير المستمر</h2><p>التأهيل الاقتصادي والعملي والعلمي</p></div></header><div class="grid">
 <section><b>📚 قراءة مقترحة</b><h3>Range — David Epstein</h3><p>مدخل للموضوع؛ اقرأه قراءة نقدية وراعِ اختلاف الأدلة والسياقات.</p><a target="_blank" rel="noopener noreferrer" href="https://books.google.com/books?q=Range%20%E2%80%94%20David%20Epstein">البحث عن الكتاب ومعلوماته ↗</a></section>
 <section><b>▶️ فيديو مختار لهذه الوحدة</b><h3>أربع نصائح لحماية مسارك المهني للمستقبل — Michelle R. Weise</h3><p>اختير هذا الفيديو لارتباطه المباشر بموضوع الدرس. المصدر: TED. قد تكون لغة الفيديو إنجليزية؛ تحقق من توفر الترجمة العربية قبل المشاهدة.</p><a target="_blank" rel="noopener noreferrer" href="https://www.ted.com/talks/michelle_r_weise_4_tips_to_future_proof_your_career">شاهد الفيديو المحدد ↗</a></section>
 <section class="graphic"><b>✦ فكرة إنفوجرافيك أصلي</b><h3>خطة نمو: مهارة، مشروع، دليل إنجاز، مراجعة</h3><p>مقترح بصري مخصص لهوية مَسَار، وليس صورة منسوخة من كتاب أو فيديو.</p></section>
 <section><b>🧭 تمرين تطبيقي · 5–15 دقيقة</b><p>اختر مهارة واحدة ومشروعًا صغيرًا يثبتها خلال أسبوعين.</p><label class="done"><input type="checkbox" data-done="N5-9"> أنجزت التمرين</label></section></div>
 <div class="quiz"><b>سؤال مراجعة</b><p>كيف تحوّل التعلم المهني إلى تقدم ملموس؟</p><label class="option"><input type="radio" name="q-N5-9" value="0"> الاعتماد على الانطباع أو عنوان جذاب</label><label class="option"><input type="radio" name="q-N5-9" value="1"> جمع معلومات موثوقة ووضع خطوة قابلة للقياس</label><label class="option"><input type="radio" name="q-N5-9" value="2"> اتخاذ قرار كبير دون اختبار أو مراجعة</label><button data-check="N5-9" data-answer="1">تحقق من الإجابة</button><span id="f-N5-9" aria-live="polite"></span></div>
-<p class="rights">المصدر المرئي محدد بعنوان ورابط مباشر بدل صفحة بحث عامة. تحقق من اللغة والترجمة وملاءمة المحتوى قبل اعتماده في خطة شخصية؛ الروابط الخارجية تظل خاضعة لتوفر الناشر وسياساته.</p></article></div><p class="notice hidden" id="empty">لا توجد نتائج مطابقة.</p>
+<p class="rights">المصدر المرئي محدد بعنوان ورابط مباشر بدل صفحة بحث عامة. تحقق من اللغة والترجمة وملاءمة المحتوى قبل اعتماده في خطة شخصية؛ الروابط الخارجية تظل خاضعة لتوفر الناشر وسياساته.</p><div class="partner-slot" data-affiliate-slot="N5-9" aria-live="polite"></div>
+</article></div><p class="notice hidden" id="empty">لا توجد نتائج مطابقة.</p>
 <div class="notice"><strong>مبدأ النشر المسؤول:</strong> استخدم روابط المشاهدة الرسمية ولا تعِد رفع المقاطع دون إذن. لا يضاف اقتباس حرفي إلا بعد التحقق من النص والطبعة والحقوق؛ ويمكن تقديم تلخيص أصلي مع الإحالة إلى الكتاب. المحتوى الصحي والنفسي تثقيفي عام وليس بديلًا عن المختص.</div></main><footer class="footer"><div class="wrap">مَسَار · لاحظ ← جرّب ← راجع</div></footer><script>
 let active="ALL";const search=document.getElementById("search");function filterCards(){const q=search.value.trim().toLowerCase();let count=0;document.querySelectorAll(".lesson").forEach(c=>{const ok=(active==="ALL"||c.dataset.path===active)&&c.dataset.search.includes(q);c.classList.toggle("hidden",!ok);if(ok)count++});document.getElementById("empty").classList.toggle("hidden",count>0)}document.querySelectorAll("[data-filter]").forEach(b=>b.addEventListener("click",()=>{active=b.dataset.filter;document.querySelectorAll("[data-filter]").forEach(x=>x.classList.toggle("active",x===b));filterCards()}));search.addEventListener("input",filterCards);
 try{document.querySelectorAll("[data-done]").forEach(x=>{const k="massar-visual-"+x.dataset.done;x.checked=localStorage.getItem(k)==="1";x.addEventListener("change",()=>{try{localStorage.setItem(k,x.checked?"1":"0")}catch(e){x.checked=!x.checked;const note=document.getElementById("saveNotice");if(note)note.textContent="تعذر الحفظ على هذا الجهاز؛ تحقق من إعدادات المتصفح."}})})}catch(e){}
 document.querySelectorAll("[data-check]").forEach(b=>b.addEventListener("click",()=>{const id=b.dataset.check,p=document.querySelector('input[name="q-'+id+'"]:checked'),o=document.getElementById("f-"+id);if(!p){o.textContent="اختر إجابة أولًا.";return}const ok=Number(p.value)===Number(b.dataset.answer);o.textContent=ok?"صحيح! فكّر كيف تطبّق الفكرة.":"ليست الأنسب؛ أعد قراءة السؤال وجرب مرة أخرى.";o.style.color=ok?"#176b62":"#8a4b28"}));
 // الأسئلة وخيارات الإجابة الأصلية لكل وحدة محفوظة؛ لا تستبدلها بأسئلة عامة.
+
+// Render educational referral cards only after the offer, tracking URL, terms, price and review metadata are approved.
+(async function renderApprovedPartnerCards(){
+  const slots = [...document.querySelectorAll("[data-affiliate-slot]")];
+  if (!slots.length) return;
+  try {
+    const response = await fetch("./affiliate-cards.json", { cache: "no-store" });
+    if (!response.ok) return;
+    const config = await response.json();
+    const offers = Array.isArray(config.offers) ? config.offers : [];
+    for (const offer of offers) {
+      if (!offer || offer.approved_for_publication !== true || offer.terms_reviewed !== true) continue;
+      if (!offer.lesson_id || !offer.course_title || !offer.tracking_url || !offer.commission_terms || !offer.price_text || !offer.review_date) continue;
+      let url;
+      try { url = new URL(offer.tracking_url); } catch (_) { continue; }
+      if (url.protocol !== "https:") continue;
+      const slot = slots.find(node => node.dataset.affiliateSlot === offer.lesson_id);
+      if (!slot) continue;
+      const card = document.createElement("section");
+      card.className = "partner-card";
+      const kicker = document.createElement("span");
+      kicker.className = "partner-kicker";
+      kicker.textContent = "خيار تعليمي إضافي · اختياري";
+      const title = document.createElement("h3");
+      title.textContent = offer.course_title;
+      const summary = document.createElement("p");
+      summary.textContent = offer.goal || "مورد اختير لمساندة هدف هذا الدرس؛ لا يحل محل خطة مَسَار.";
+      const provider = document.createElement("p");
+      provider.textContent = "المزوّد: " + (offer.provider || config.provider || "مزوّد خارجي") + " · السعر المعلن عند آخر مراجعة: " + offer.price_text;
+      const link = document.createElement("a");
+      link.className = "partner-link";
+      link.href = url.href;
+      link.target = "_blank";
+      link.rel = "sponsored nofollow noopener noreferrer";
+      link.textContent = "استكشف الدورة لدى المزوّد ↗";
+      const disclosure = document.createElement("p");
+      disclosure.className = "partner-disclosure";
+      disclosure.textContent = offer.disclosure_ar || config.default_disclosure_ar || "قد يحصل مَسَار على عمولة من شراء مؤهل عبر رابط الإحالة؛ راجع شروط المزوّد.";
+      card.append(kicker, title, summary, provider, link, disclosure);
+      slot.replaceChildren(card);
+    }
+  } catch (_) {
+    // Keep optional referral cards absent if the draft config is unavailable.
+  }
+})();
+
 </script></body></html>
