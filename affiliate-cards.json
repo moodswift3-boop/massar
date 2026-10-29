@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "project": "Massar",
+  "status": "draft_not_approved_for_publication",
+  "purpose": "Draft for contextual educational referral cards. No tracking URLs are active yet.",
+  "provider": "Coursera",
+  "audience": "Beginners and people seeking skill development",
+  "default_disclosure_ar": "قد يحصل مَسَار على عمولة إذا أتممت شراءً مؤهلًا عبر رابط إحالة معتمد، وفق شروط برنامج المزود. النقر وحده لا يضمن حصول مَسَار على عمولة.",
+  "rule": "Coursera is optional support only when it serves the learner's existing Massar plan, never a replacement for Massar onboarding or planning.",
+  "offers": [
+    {
+      "lesson_id": "N5-4",
+      "lesson_title": "اكتشاف القدرات والميول المهنية",
+      "goal": "Explore career interests and compare learning paths",
+      "course_title": "",
+      "course_url": "",
+      "tracking_url": "",
+      "price_text": "",
+      "commission_terms": "",
+      "terms_reviewed": false,
+      "review_date": "",
+      "approved_for_publication": false
+    },
+    {
+      "lesson_id": "N5-5",
+      "lesson_title": "المهارات العملية والاستعداد للتوظيف",
+      "goal": "Build a job-ready skill and demonstrate it in a portfolio",
+      "course_title": "",
+      "course_url": "",
+      "tracking_url": "",
+      "price_text": "",
+      "commission_terms": "",
+      "terms_reviewed": false,
+      "review_date": "",
+      "approved_for_publication": false
+    },
+    {
+      "lesson_id": "N5-6",
+      "lesson_title": "العمل الحر والمشروعات الصغيرة",
+      "goal": "Test an idea, understand customers and build a small practical business skill",
+      "course_title": "",
+      "course_url": "",
+      "tracking_url": "",
+      "price_text": "",
+      "commission_terms": "",
+      "terms_reviewed": false,
+      "review_date": "",
+      "approved_for_publication": false
+    },
+    {
+      "lesson_id": "N5-7",
+      "lesson_title": "التعلّم العلمي والتفكير النقدي",
+      "goal": "Practice research, critical thinking and evidence assessment",
+      "course_title": "",
+      "course_url": "",
+      "tracking_url": "",
+      "price_text": "",
+      "commission_terms": "",
+      "terms_reviewed": false,
+      "review_date": "",
+      "approved_for_publication": false
+    },
+    {
+      "lesson_id": "N5-8",
+      "lesson_title": "المهارات الرقمية والأدوات التقنية",
+      "goal": "Develop a relevant digital skill",
+      "course_title": "",
+      "course_url": "",
+      "tracking_url": "",
+      "price_text": "",
+      "commission_terms": "",
+      "terms_reviewed": false,
+      "review_date": "",
+      "approved_for_publication": false
+    },
+    {
+      "lesson_id": "N5-9",
+      "lesson_title": "التخطيط المهني والتطوير المستمر",
+      "goal": "Create a measurable learning plan for continuing career growth",
+      "course_title": "",
+      "course_url": "",
+      "tracking_url": "",
+      "price_text": "",
+      "commission_terms": "",
+      "terms_reviewed": false,
+      "review_date": "",
+      "approved_for_publication": false
+    }
+  ]
+}
