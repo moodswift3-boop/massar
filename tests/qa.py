@@ -69,8 +69,9 @@ require("youtube.com/results?search_query" not in visual, "Generic YouTube searc
 require(visual.count("فيديو مختار لهذه الوحدة") == 39, "Each of the 39 lessons must have one direct video resource")
 
 video_urls = re.findall(
-    r'<b>▶️ فيديو مختار لهذه الوحدة</b><h3>[\\s\\S]*?</h3><p>[\\s\\S]*?</p><a target="_blank" rel="noopener noreferrer" href="([^"]+)">شاهد الفيديو المحدد',
+    r'<b>▶️ فيديو مختار لهذه الوحدة</b><h3>.*?</h3><p>.*?</p><a[^>]*href="([^"]+)">شاهد الفيديو المحدد',
     visual,
+    re.S,
 )
 require(len(video_urls) == 39, f"Expected 39 direct video links, found {len(video_urls)}")
 require(len(set(video_urls)) == 39, "Each visual lesson must use a unique direct video URL")
