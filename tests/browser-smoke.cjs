@@ -48,6 +48,21 @@ const assert = require("node:assert/strict");
     await page.setViewportSize({ width: 375, height: 812 });
     const dimensions = await page.evaluate(() => ({ width: document.documentElement.clientWidth, scroll: document.documentElement.scrollWidth }));
     assert.ok(dimensions.scroll <= dimensions.width + 2, `mobile horizontal overflow: ${JSON.stringify(dimensions)}`);
+
+    // Referral cards must render only for fully approved, terms-reviewed offers with valid HTTPS tracking URLs.
+    const affiliateConfig = await page.evaluate(async () => await (await fetch("./affiliate-cards.json")).json());
+    const approvedOfferCount = affiliateConfig.offers.filter(offer => {
+      if (offer.approved_for_publication !== true || offer.terms_reviewed !== true) return false;
+      if (!offer.course_title || !offer.tracking_url || !offer.commission_terms || !offer.price_text || !offer.review_date) return false;
+      try { return new URL(offer.tracking_url).protocol === "https:"; } catch (_) { return false; }
+    }).length;
+    assert.equal(await page.locator(".partner-card").count(), approvedOfferCount, "only fully approved affiliate cards should display");
+    assert.equal(await page.locator('[data-affiliate-slot="N5-6"]').count(), 1, "a contextual slot should exist for the freelancing lesson");
+
+    // Privacy policy must be published and readable.
+    await page.goto("http://127.0.0.1:4173/privacy.html", { waitUntil: "networkidle" });
+    assert.ok((await page.locator("h1").textContent()).includes("سياسة الخصوصية"), "privacy page should render");
+
     assert.deepEqual(errors, [], "pages should not throw uncaught JavaScript errors");
     console.log("PASS browser smoke tests: five paths, worksheet autosave, progress persistence, search/open, exercise persistence, quiz feedback, mobile viewport, no uncaught page errors");
   } finally {
