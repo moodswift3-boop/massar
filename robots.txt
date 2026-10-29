@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://moodswift3-boop.github.io/massar/sitemap.xml
