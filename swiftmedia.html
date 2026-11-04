@@ -34,7 +34,7 @@
 <div class="checks"><span>✓ رسوم وأيقونات</span><span>✓ تعليق صوتي</span><span>✓ نصوص على الشاشة</span><span>✓ مشاهد مساعدة</span></div>
 <div class="actions"><button class="btn" type="submit">إنشاء مخطط الفيديو</button><button class="btn secondary" id="resetBtn" type="button">إعادة المثال</button></div>
 </form>
-<div class="note"><strong>تنبيه تقني:</strong> مفتاح API يجب أن يبقى في خادم آمن، لا داخل HTML أو JavaScript المنشور. الربط الفعلي يحتاج نقطة خلفية (Backend) لحفظ المفتاح وإرسال طلب التوليد ومتابعة حالة الرندر.</div>
+<div class="note"><strong>ملاحظة:</strong> يتصل SwiftMedia بخادم Vercel. يجب ضبط JSON2VIDEO_API_KEY في إعدادات Production. لا تضع المفتاح في ملفات الموقع.</div>
 </section>
 <section class="panel" aria-live="polite">
 <div class="preview-head"><div><h2>٢. معاينة لوحة المشاهد</h2><p class="sub" style="margin:3px 0 0">مخطط نصي قابل للمراجعة قبل الإنتاج</p></div><span class="status" id="status">مثال جاهز</span></div>
@@ -70,21 +70,21 @@ document.getElementById('renderBtn').addEventListener('click',async()=>{
  const narration=document.getElementById('voiceText').textContent;
  result.hidden=false;result.textContent='جارٍ إرسال طلب الإنتاج إلى الخادم…';btn.disabled=true;
  try{
-  const response=await fetch('/api/videos',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({topic:d.topic,narration,format:d.format})});
+  const response=await fetch('/api/videos',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({topic:d.topic,narration,audience:d.audience,format:d.format,voice:d.voice,duration:d.duration})});
   const payload=await response.json();
   if(!response.ok){const detail=payload.error==='server_not_configured'?'مفتاح JSON2VIDEO_API_KEY غير مضاف إلى بيئة Vercel الخاصة بهذا النشر. أضفه إلى Production ثم أعد النشر.':payload.error==='render_submit_failed'?'رفض محرك JSON2Video الطلب: '+(payload.message||'تحقق من صلاحية المفتاح ورصيد الحساب وإعدادات المحرك.'):payload.message||'تعذر بدء الإنتاج';throw new Error(detail);}
-  result.textContent='تم إرسال الطلب. معرّف المشروع: '+payload.project+' — نتابع حالة الرندر…';
+  result.textContent='أُرسل '+(payload.scenes||'')+' مشهدًا إلى محرك الإنتاج. معرّف المشروع: '+payload.project+' — نتابع إنشاء ملف MP4…';
   const project=payload.project;
-  for(let i=0;i<60;i++){
+  for(let i=0;i<120;i++){
    await new Promise(resolve=>setTimeout(resolve,5000));
    const check=await fetch('/api/videos?project='+encodeURIComponent(project));
    const state=await check.json();
    if(!check.ok) throw new Error(state.message||'تعذر متابعة حالة الفيديو');
-   if(state.status==='done'&&state.url){result.textContent='اكتمل الفيديو! ';const a=document.createElement('a');a.href=state.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='مشاهدة / تنزيل MP4';result.appendChild(a);document.getElementById('status').textContent='اكتمل الفيديو';return;}
+   if(state.status==='done'&&state.url){result.textContent='اكتمل الفيديو بنجاح. ';const a=document.createElement('a');a.href=state.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='مشاهدة / تنزيل MP4';result.appendChild(a);document.getElementById('status').textContent='اكتمل الفيديو';return;}
    if(['error','timeout'].includes(state.status)) throw new Error(state.message||'تعذر إكمال الرندر');
-   result.textContent='حالة الإنتاج: '+state.status+' — سيتم التحقق مجددًا تلقائيًا.';
+   result.textContent='حالة الإنتاج: '+state.status+(state.progress!==null?' · '+state.progress+'%':'')+' — جارٍ تجهيز ملف MP4.';
   }
-  result.textContent='ما زال الإنتاج جاريًا. احتفظ بمعرّف المشروع: '+project+'، ويمكن إعادة التحقق لاحقًا.';
+  result.textContent='لم يصل الإنتاج إلى الحالة النهائية خلال عشر دقائق. احتفظ بمعرّف المشروع: '+project+'، ثم أعد فحص الحالة.';
  }catch(err){result.textContent='لم يكتمل الطلب: '+err.message;}
  finally{btn.disabled=false;}
 });
