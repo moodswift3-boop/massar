@@ -1,7 +1,7 @@
 {
   "version": 2,
   "functions": {
-    "api/videos/index.js": {
+    "api/videos.js": {
       "maxDuration": 60
     }
   }
