@@ -81,6 +81,39 @@ button,a,input,textarea{scroll-margin-top:100px}
 .small,.rights{line-height:1.75}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 @media(max-width:700px){body{background-attachment:scroll}.hero{padding:24px 18px}.nav a{min-height:42px}}
+
+/* Professional usability refinement — clear hierarchy, distinct icons, calm spacing */
+.path-icon{font-size:1.45rem!important;color:#0879b8;background:linear-gradient(145deg,#f2fbff,#d9f2ff);border:1px solid #c4eafa}
+.path-icon::after{content:none!important}
+.path-card{overflow:hidden;min-height:190px;border-radius:22px;background:#fff;box-shadow:0 8px 26px rgba(12,93,139,.08)}
+.path-card:before,.path-card:after{display:none}
+.path-top{min-height:126px}
+.path-card h3{color:#17445f;font-size:1.08rem;line-height:1.55}
+.path-card p{line-height:1.75}
+.path-bottom{border-top:1px solid #edf5f9;padding-top:13px}
+.open-path{border-radius:999px;padding:8px 13px;min-height:42px}
+.nav{position:relative;gap:6px}
+.nav a{font-weight:600;min-height:42px;display:inline-flex;align-items:center;justify-content:center}
+.hero{padding:clamp(28px,5vw,54px);border-radius:26px}
+.hero h2{max-width:650px;letter-spacing:-.02em}
+.hero p{font-size:1.02rem;line-height:1.9}
+.stats{gap:14px}
+.stat{border-radius:16px}
+.stat strong{font-size:1.55rem}
+.section-head{margin-top:34px}
+.search{min-height:46px;border-color:#b9deef;box-shadow:0 3px 12px #176d9608}
+.search:focus{outline:3px solid #8bd7f2;outline-offset:2px}
+.btn{min-height:44px}
+.btn:focus-visible,.open-path:focus-visible{outline:3px solid #e7b84e;outline-offset:3px}
+.unit{transition:border-color .18s,transform .18s}
+.unit:hover{border-color:#8ed5f0;transform:translateY(-1px)}
+.detail{scroll-margin-top:20px}
+.worksheet-field textarea{min-height:88px}
+.footer a:hover{text-decoration:none;opacity:.82}
+@media(min-width:900px){.path-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}}
+@media(max-width:700px){.hero-actions .btn{width:100%}.stats{grid-template-columns:repeat(3,minmax(0,1fr))}.stat{padding:12px 9px}.stat strong{font-size:1.2rem}.stat span{font-size:.76rem}.path-top{min-height:0}.path-bottom{align-items:center}.nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.nav a{background:#fff;border:1px solid #d9edf7}}
+@media(max-width:390px){.stats{grid-template-columns:1fr}.stat{display:flex;align-items:center;justify-content:space-between}.hero h2{font-size:1.65rem}}
+
 </style>
 </head>
 <body>
@@ -92,7 +125,7 @@ button,a,input,textarea{scroll-margin-top:100px}
 </header>
 <main class="wrap" id="home">
 <section class="hero"><div class="eyebrow">رحلتك تبدأ بخطوة</div><h2>اكتشف قدراتك، وابنِ مسارك خطوة بخطوة.</h2><p>مساحة تعليمية تساعدك على تحويل الأفكار إلى خطوات عملية؛ لاحظ واقعك، جرّب ما يناسبك، ثم راجع ما تعلّمته لتختار خطوتك التالية بوعي.</p><div class="hero-actions"><a class="btn btn-gold" href="#paths">ابدأ رحلتك <span aria-hidden="true">←</span></a><a class="btn btn-glass" href="./visual-library.html">استكشف المكتبة المرئية ↗</a><a class="btn btn-glass" href="./swiftmedia.html">جرّب SwiftMedia ↗</a><a class="btn btn-glass" href="#about">تعرّف على المنهج</a></div></section>
-<section class="stats" aria-label="ملخص المنصة"><div class="stat"><strong>٥</strong><span>مسارات متكاملة</span></div><div class="stat"><strong>٣٩</strong><span>وحدة للتعلّم والتطبيق</span></div><div class="stat"><strong id="doneCount">٠</strong><span>وحدات أنجزتها على هذا الجهاز</span></div></section>
+<section class="stats" aria-label="ملخص المنصة"><div class="stat"><strong>٥</strong><span>مسارات متكاملة</span></div><div class="stat"><strong>٣٩</strong><span>وحدة للتعلّم والتطبيق</span></div><div class="stat"><strong id="doneCount">٠</strong><span>وحدات أنجزتها على هذا الجهاز</span></div></section><p id="storageNotice" class="small" role="status" aria-live="polite">يُحفظ تقدمك محليًا على هذا الجهاز فقط.</p>
 <section id="paths"><div class="section-head"><div><h2>مساراتك نحو نمو متوازن</h2><p>اختر المسار الأقرب إلى هدفك، وابدأ بوحدة واحدة.</p></div><div class="filter-row"><input id="search" class="search" type="search" placeholder="ابحث عن مسار أو وحدة…" aria-label="ابحث عن مسار أو وحدة"></div></div><div class="path-grid" id="pathGrid"></div></section>
 <section id="progress"><div class="section-head"><div><h2>تقدّمك الشخصي</h2><p>يُحفظ التحديد محليًا في متصفح هذا الجهاز فقط.</p></div><button class="btn btn-outline" id="resetProgress" type="button">إعادة ضبط التقدّم</button></div><div class="panel"><div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><strong>الوحدات المكتملة</strong><strong id="progressLabel">٠ من ٣٩</strong></div><div class="progress" role="progressbar" aria-label="نسبة إكمال الوحدات" aria-valuemin="0" aria-valuemax="39" aria-valuenow="0"><span id="progressBar"></span></div><p class="small">تذكير: هذا التقدّم لا يُزامَن بين الأجهزة، ولا يحتاج إلى تسجيل دخول في النسخة الحالية.</p></div></section>
 <section id="about"><div class="section-head"><div><h2>طريقة مَسَار: لاحظ · جرّب · راجع</h2><p>تعلّم عملي يحترم اختلاف الظروف ويشجّع التدرّج.</p></div></div><div class="path-grid"><article class="panel"><div class="path-icon">⌕</div><h3>١. لاحظ</h3><p>حدّد الموقف الحالي وما تريد فهمه دون أحكام قاسية على نفسك.</p></article><article class="panel"><div class="path-icon">↗</div><h3>٢. جرّب</h3><p>اختر خطوة صغيرة وآمنة يمكن تنفيذها ضمن وقتك وإمكاناتك.</p></article><article class="panel"><div class="path-icon">↻</div><h3>٣. راجع</h3><p>لاحظ ما حدث، واستخلص ما تعلمته، ثم عدّل الخطوة التالية.</p></article><article class="panel"><div class="path-icon">✦</div><h3>تقدّم بلا مثالية</h3><p>المحتوى إرشادي وتعليمي، وليس بديلًا عن الاستشارة المتخصصة عند الحاجة.</p></article></div><div class="notice"><strong>ملاحظة حول النسخة الحالية:</strong> تنبيه مهم: مَسَار منصة تعلّم ذاتي وتثقيف عام، وليست خدمة علاج نفسي أو طبي أو استشارة مالية أو مهنية متخصصة. لا يوجد تسجيل دخول أو مزامنة سحابية حاليًا؛ يُحفظ التقدم على هذا المتصفح فقط. تجنّب إدخال بيانات شخصية حساسة.</div></section>
@@ -114,7 +147,7 @@ const areas=[
 const storageKey='massar-progress-v2';
 function readProgress(){try{return JSON.parse(localStorage.getItem(storageKey)||'{}')}catch(e){return {}}}
 let progress=readProgress();
-function saveProgress(){try{localStorage.setItem(storageKey,JSON.stringify(progress))}catch(e){} renderProgress()}
+function saveProgress(){try{localStorage.setItem(storageKey,JSON.stringify(progress));const n=document.getElementById('storageNotice');if(n)n.textContent='تم حفظ تقدمك على هذا الجهاز.'}catch(e){const n=document.getElementById('storageNotice');if(n)n.textContent='تعذر حفظ التقدم. تحقق من مساحة المتصفح أو إعدادات الخصوصية.'}renderProgress()}
 function renderProgress(){const done=Object.values(progress).filter(Boolean).length;document.getElementById('doneCount').textContent=done.toLocaleString('ar-EG');document.getElementById('progressLabel').textContent=done.toLocaleString('ar-EG')+' من ٣٩';document.getElementById('progressBar').style.width=(done/39*100)+'%';document.querySelector('[role="progressbar"]').setAttribute('aria-valuenow',done)}
 function renderPaths(query=''){const grid=document.getElementById('pathGrid');const q=query.trim().toLocaleLowerCase('ar');grid.innerHTML='';let matches=0;areas.forEach(a=>{const subs=a.subs.filter(s=>(a.title+' '+a.desc+' '+s[0]+' '+s[1]).toLocaleLowerCase('ar').includes(q));if(q&&!subs.length)return;matches++;grid.insertAdjacentHTML('beforeend',`<article class="path-card"><div class="path-top"><div class="path-icon" aria-hidden="true">${a.icon}</div><div><h3>${a.title}</h3><p>${a.desc}</p></div></div><div class="path-bottom"><span class="tag">${a.code} · ${a.subs.length} وحدات</span><button class="open-path" type="button" data-path="${a.code}">${q?'عرض النتائج':'استكشف المسار'} ←</button></div></article>`);if(q){const card=grid.lastElementChild;card.insertAdjacentHTML('beforeend',`<div style="padding:0 20px 18px;display:grid;gap:8px">${subs.map((s)=>`<div class="unit"><span class="unit-code">${a.code}</span><div><h3>${s[0]}</h3><p>${s[1]}</p><button type="button" data-open-unit="${a.code}|${a.subs.indexOf(s)}">فتح الوحدة ←</button></div></div>`).join('')}</div>`)}});if(!matches)grid.innerHTML='<div class="empty">لا توجد نتائج. جرّب كلمة بحث أخرى.</div>'}
 function openPath(code){const a=areas.find(x=>x.code===code);if(!a)return;document.getElementById('paths').scrollIntoView({behavior:'smooth'});document.getElementById('pathGrid').innerHTML=`<div style="grid-column:1/-1"><button class="btn btn-outline" id="backPaths" type="button">→ العودة إلى جميع المسارات</button><div class="section-head"><div><h2>${a.title}</h2><p>${a.desc}</p></div><span class="tag">${a.subs.length} وحدات تعليمية</span></div><div class="subgrid">${a.subs.map((s,i)=>`<article class="unit"><span class="unit-code">${a.code}.${i+1}</span><div><h3>${s[0]}</h3><p>${s[1]}</p><button type="button" data-open-unit="${a.code}|${i}">فتح الوحدة ←</button></div></article>`).join('')}</div><div id="unitDetail"></div></div>`;document.getElementById('backPaths').onclick=()=>renderPaths(document.getElementById('search').value)}
